@@ -817,7 +817,7 @@
 
   <div class="hero-product">
     <div class="glow-ring"></div>
-    <img src="produto-black.jpg" alt="Polar Beats — ar-condicionado com áudio premium" onerror="this.style.display='none'">
+    <img src="produto-black.jpg" alt="Polar Beats — ar-condicionado com áudio premium">
   </div>
 </section>
 
@@ -852,11 +852,15 @@
       <p class="section-sub">A Polar Beats integra tecnologia de áudio de alta fidelidade diretamente no chassi lateral de um split inverter — sem ocupar espaço extra, sem cabos adicionais.</p>
     </div>
 
-    <div class="product-grid">
-      <div class="product-imgs">
-        <img src="ecossistema.jpg" alt="Polar Beats — Um Ecossistema Completo" onerror="this.style.background='#0F1628'; this.style.minHeight='200px'">
-        <img src="produto-black.jpg" alt="Polar Beats versão preta" onerror="this.style.background='#0F1628'">
-        <img src="app.jpg" alt="Aplicativo Polar Beats" onerror="this.style.background='#0F1628'">
+    <!-- ECOSSISTEMA — largura total -->
+    <div style="margin-top: 3.5rem; border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,191,255,0.15);">
+      <img src="ecossistema.jpg" alt="Polar Beats — Um Ecossistema Completo" style="width: 100%; display: block;">
+    </div>
+
+    <!-- APP + FEATURES -->
+    <div class="product-grid" style="margin-top: 3rem;">
+      <div style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(0,191,255,0.12); align-self: center;">
+        <img src="app.jpg" alt="App Polar Beats" style="width: 100%; display: block;">
       </div>
 
       <ul class="feature-list">
@@ -902,6 +906,31 @@
         </li>
       </ul>
     </div>
+
+    <!-- VERSÕES LADO A LADO -->
+    <div style="margin-top: 4rem;">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <span class="section-label">Disponível em duas versões</span>
+        <h3 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: 2px; color: #fff;">ESCOLHA O SEU ESTILO.</h3>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(0,191,255,0.12); background: var(--pb-dark2); transition: border-color 0.25s, transform 0.25s;" onmouseover="this.style.borderColor='rgba(0,191,255,0.35)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(0,191,255,0.12)';this.style.transform='translateY(0)'">
+          <img src="produto-black.jpg" alt="Polar Beats — Versão Preta" style="width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover;">
+          <div style="padding: 1.2rem 1.5rem;">
+            <h4 style="font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 2px; color: #fff; margin-bottom: 0.3rem;">POLAR BEATS BLACK</h4>
+            <p style="font-size: 0.82rem; color: var(--pb-muted); font-weight: 300;">Acabamento premium matte black. Para ambientes que exigem sofisticação.</p>
+          </div>
+        </div>
+        <div style="border-radius: 18px; overflow: hidden; border: 1px solid rgba(0,191,255,0.12); background: var(--pb-dark2); transition: border-color 0.25s, transform 0.25s;" onmouseover="this.style.borderColor='rgba(0,191,255,0.35)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(0,191,255,0.12)';this.style.transform='translateY(0)'">
+          <img src="produto-white.jpg" alt="Polar Beats — Versão Branca" style="width: 100%; display: block; aspect-ratio: 16/10; object-fit: cover;">
+          <div style="padding: 1.2rem 1.5rem;">
+            <h4 style="font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 2px; color: #fff; margin-bottom: 0.3rem;">POLAR BEATS WHITE</h4>
+            <p style="font-size: 0.82rem; color: var(--pb-muted); font-weight: 300;">Acabamento clean white. Integra-se a qualquer decoração residencial ou comercial.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
