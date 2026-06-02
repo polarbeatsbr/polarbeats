@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polar Beats — O Primeiro Sistema de Climatização e Áudio para Ambientes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pb-blue: #00BFFF;
+    --pb-blue-dark: #0090CC;
+    --pb-black: #050810;
+    --pb-dark: #0A0F1E;
+    --pb-dark2: #0F1628;
+    --pb-gray: #1A2035;
+    --pb-light: #E8F4FF;
+    --pb-muted: rgba(200,220,255,0.55);
+    --pb-accent: #00BFFF;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--pb-black);
+    color: var(--pb-light);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(5,8,16,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(0,191,255,0.12);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+  }
+
+  .nav-logo span {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--pb-blue);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--pb-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--pb-blue); }
+
+  .nav-cta {
+    background: var(--pb-blue);
+    color: var(--pb-black) !important;
+    padding: 0.5rem 1.4rem;
+    border-radius: 30px;
+    font-weight: 700 !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: #33CCFF !important;
+    transform: translateY(-1px);
+    color: var(--pb-black) !important;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 5vw 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,100,200,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(0,191,255,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(0,191,255,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,191,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,191,255,0.1);
+    border: 1px solid rgba(0,191,255,0.3);
+    border-radius: 30px;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pb-blue);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--pb-blue);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 0.2rem;
+    position: relative;
+  }
+
+  .hero h1 span {
+    color: var(--pb-blue);
+    display: block;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--pb-muted);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin: 1.5rem 0 2.5rem;
+    max-width: 540px;
+  }
+
+  .hero-tagline strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .btn-primary {
+    background: var(--pb-blue);
+    color: var(--pb-black);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #33CCFF;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0,191,255,0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--pb-blue);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    border: 1.5px solid rgba(0,191,255,0.4);
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--pb-blue);
+    background: rgba(0,191,255,0.08);
+  }
+
+  .hero-product {
+    position: relative;
+    width: min(700px, 90vw);
+    margin: 0 auto;
+  }
+
+  .hero-product img {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .glow-ring {
+    position: absolute;
+    inset: -20px;
+    border-radius: 30px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(0,191,255,0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  /* STATS */
+  .stats-bar {
+    background: var(--pb-dark);
+    border-top: 1px solid rgba(0,191,255,0.1);
+    border-bottom: 1px solid rgba(0,191,255,0.1);
+    padding: 2.5rem 5vw;
+  }
+
+  .stats-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-item {}
+
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--pb-blue);
+    line-height: 1;
+    letter-spacing: 2px;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--pb-muted);
+    font-weight: 500;
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* SECTION BASE */
+  section {
+    padding: 6rem 5vw;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pb-blue);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    letter-spacing: 2px;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--pb-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  .max-w {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* PRODUTO */
+  .product-section {
+    background: var(--pb-dark);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .product-imgs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .product-imgs img {
+    width: 100%;
+    border-radius: 14px;
+    border: 1px solid rgba(0,191,255,0.12);
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .product-imgs img:first-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 16/9;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: rgba(0,191,255,0.05);
+    border: 1px solid rgba(0,191,255,0.1);
+    border-radius: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .feature-item:hover {
+    border-color: rgba(0,191,255,0.3);
+  }
+
+  .feature-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .feature-text h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .feature-text p {
+    font-size: 0.82rem;
+    color: var(--pb-muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* DIFERENCIAIS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .card {
+    background: var(--pb-dark2);
+    border: 1px solid rgba(0,191,255,0.1);
+    border-radius: 18px;
+    padding: 2rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--pb-blue), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .card:hover {
+    border-color: rgba(0,191,255,0.25);
+    transform: translateY(-4px);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+    color: var(--pb-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* MERCADO */
+  .market-section {
+    background: var(--pb-dark);
+  }
+
+  .market-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+
+  .market-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .market-stat {
+    background: var(--pb-dark2);
+    border: 1px solid rgba(0,191,255,0.12);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .market-stat-top {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .market-stat-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem;
+    color: var(--pb-blue);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .market-stat-unit {
+    font-size: 0.9rem;
+    color: var(--pb-muted);
+    font-weight: 400;
+  }
+
+  .market-stat p {
+    font-size: 0.82rem;
+    color: var(--pb-muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .bar-wrap {
+    height: 5px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    margin-top: 0.8rem;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--pb-blue-dark), var(--pb-blue));
+  }
+
+  .market-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .market-text p {
+    color: var(--pb-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .market-text strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .highlight-box {
+    background: rgba(0,191,255,0.08);
+    border: 1px solid rgba(0,191,255,0.25);
+    border-radius: 14px;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .highlight-box h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--pb-blue);
+    margin-bottom: 0.6rem;
+  }
+
+  .highlight-box p {
+    font-size: 0.88rem;
+    color: var(--pb-muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* OPORTUNIDADE */
+  .opportunity-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-top: 3.5rem;
+  }
+
+  .opp-card {
+    background: var(--pb-dark2);
+    border: 1px solid rgba(0,191,255,0.1);
+    border-radius: 16px;
+    padding: 1.8rem;
+    text-align: center;
+    transition: all 0.25s;
+  }
+
+  .opp-card:hover {
+    border-color: rgba(0,191,255,0.3);
+    transform: translateY(-3px);
+  }
+
+  .opp-icon { font-size: 2.2rem; margin-bottom: 0.8rem; display: block; }
+
+  .opp-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+
+  .opp-card p {
+    font-size: 0.8rem;
+    color: var(--pb-muted);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* PATENTE */
+  .patent-banner {
+    background: linear-gradient(135deg, rgba(0,80,140,0.3), rgba(0,191,255,0.08));
+    border: 1px solid rgba(0,191,255,0.2);
+    border-radius: 20px;
+    padding: 3rem 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .patent-icon { font-size: 4rem; flex-shrink: 0; }
+
+  .patent-text h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: var(--pb-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .patent-text p {
+    color: var(--pb-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    background: var(--pb-dark);
+    text-align: center;
+  }
+
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-section .section-title {
+    margin-bottom: 1.2rem;
+  }
+
+  .cta-section .section-sub {
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .contact-info {
+    margin-top: 2rem;
+    font-size: 0.82rem;
+    color: var(--pb-muted);
+  }
+
+  .contact-info a {
+    color: var(--pb-blue);
+    text-decoration: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--pb-black);
+    border-top: 1px solid rgba(0,191,255,0.08);
+    padding: 2.5rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: var(--pb-blue);
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(200,220,255,0.3);
+  }
+
+  .footer-patent {
+    font-size: 0.75rem;
+    color: rgba(200,220,255,0.3);
+    font-style: italic;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .product-grid, .market-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .nav-links { display: none; }
+
+    .hero h1 { font-size: 3.5rem; }
+
+    .patent-banner { padding: 2rem; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span>POLAR BEATS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#produto">Produto</a></li>
+    <li><a href="#mercado">Mercado</a></li>
+    <li><a href="#oportunidade">Oportunidade</a></li>
+    <li><a href="#contato" class="nav-cta">Falar com a equipe</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-badge">Patente registrada no INPI · BR 202023011705-3</div>
+
+  <h1>
+    CLIMA QUE
+    <span>VOCÊ OUVE.</span>
+  </h1>
+
+  <p class="hero-tagline">
+    O primeiro ar-condicionado do mundo com <strong>sistema de áudio premium integrado</strong> — 
+    uma categoria inteiramente nova no mercado de climatização.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#contato" class="btn-primary">Quero ser distribuidor</a>
+    <a href="#produto" class="btn-secondary">Conhecer o produto</a>
+  </div>
+
+  <div class="hero-product">
+    <div class="glow-ring"></div>
+    <img src="produto-black.jpg" alt="Polar Beats — ar-condicionado com áudio premium" onerror="this.style.display='none'">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">52%</div>
+      <div class="stat-label">Taxa de aceitação nacional</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">2038</div>
+      <div class="stat-label">Validade da patente INPI</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">1ª</div>
+      <div class="stat-label">Categoria no segmento</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">B2B</div>
+      <div class="stat-label">Foco em negócios de alto tráfego</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUTO -->
+<section class="product-section" id="produto">
+  <div class="max-w">
+    <div>
+      <span class="section-label">O Produto</span>
+      <h2 class="section-title">AR-CONDICIONADO.<br>SISTEMA DE SOM.<br>UMA SÓ PEÇA.</h2>
+      <p class="section-sub">A Polar Beats integra tecnologia de áudio de alta fidelidade diretamente no chassi lateral de um split inverter — sem ocupar espaço extra, sem cabos adicionais.</p>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-imgs">
+        <img src="produto-white.jpg" alt="Polar Beats versão branca" onerror="this.style.background='#0F1628'; this.style.minHeight='200px'">
+        <img src="produto-black.jpg" alt="Polar Beats versão preta" onerror="this.style.background='#0F1628'">
+        <img src="app.jpg" alt="Aplicativo Polar Beats" onerror="this.style.background='#0F1628'">
+      </div>
+
+      <ul class="feature-list">
+        <li class="feature-item">
+          <span class="feature-icon">🔊</span>
+          <div class="feature-text">
+            <h4>Áudio Premium com certificação JBL</h4>
+            <p>Tecido acústico premium e difusão espacial de som — qualidade sonora de nível profissional em qualquer ambiente.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">🎵</span>
+          <div class="feature-text">
+            <h4>Integração Spotify & Bluetooth</h4>
+            <p>Controle total pelo app Polar Beats — playlist, temperatura e iluminação Aura sincronizados em um único painel.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">🌙</span>
+          <div class="feature-text">
+            <h4>Modo Sleep Masking</h4>
+            <p>Sons ambiente calibrados automaticamente para mascarar ruídos externos e garantir sono de qualidade.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">❄️</span>
+          <div class="feature-text">
+            <h4>Climatização inverter de alta eficiência</h4>
+            <p>Tecnologia inverter com controle preciso de temperatura e eficiência energética superior.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <span class="feature-icon">💡</span>
+          <div class="feature-text">
+            <h4>Aura Light — iluminação ambiente</h4>
+            <p>LED RGB integrado que sincroniza com a música e o humor do ambiente — conforto sensorial completo.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="max-w">
+    <span class="section-label">Por que a Polar Beats</span>
+    <h2 class="section-title">UMA CATEGORIA.<br>ZERO CONCORRENTES.</h2>
+    <p class="section-sub">Não existe no mercado brasileiro — nem global — nenhum produto que una climatização e áudio premium em um equipamento fixo patenteado.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🏆</span>
+        <h3>Inovação patenteada</h3>
+        <p>Patente registrada no INPI com validade até 2038. Proteção exclusiva sobre o design de integração do sistema de áudio no chassi lateral.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏥</span>
+        <h3>Mercado B2B imediato</h3>
+        <p>Clínicas, academias, hotéis, salões de beleza e restaurantes — ambientes que já precisam de ar-condicionado e sonorização separados.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧩</span>
+        <h3>Substitui dois produtos</h3>
+        <p>Um investimento que elimina a necessidade de comprar e instalar ar-condicionado + sistema de som separadamente.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📲</span>
+        <h3>Ecossistema inteligente</h3>
+        <p>App proprietário que centraliza climatização, áudio e iluminação — diferencal de experiência do usuário sem precedente no setor.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌎</span>
+        <h3>Mercado inexplorado</h3>
+        <p>O setor de ar-condicionado movimenta bilhões anualmente no Brasil. A Polar Beats entra como premium disruptor sem competição direta.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <h3>Pronto para distribuição</h3>
+        <p>Produto em fase final de manufatura, com parceiro industrial ativo e infraestrutura de produção estabelecida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MERCADO -->
+<section class="market-section" id="mercado">
+  <div class="max-w">
+    <span class="section-label">Validação de Mercado</span>
+    <h2 class="section-title">OS NÚMEROS<br>FALAM.</h2>
+    <p class="section-sub">Pesquisa de aceitação realizada em âmbito nacional confirma o potencial do produto antes mesmo do lançamento.</p>
+
+    <div class="market-grid">
+      <div class="market-stats">
+        <div class="market-stat">
+          <div class="market-stat-top">
+            <span class="market-stat-num">52%</span>
+            <span class="market-stat-unit">de aceitação</span>
+          </div>
+          <p>Taxa geral de intenção de compra em pesquisa nacional de mercado</p>
+          <div class="bar-wrap"><div class="bar-fill" style="width: 52%"></div></div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-top">
+            <span class="market-stat-num">R$ 50 bi</span>
+          </div>
+          <p>Tamanho estimado do mercado brasileiro de ar-condicionado anualmente</p>
+          <div class="bar-wrap"><div class="bar-fill" style="width: 80%"></div></div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-top">
+            <span class="market-stat-num">520+</span>
+            <span class="market-stat-unit">unidades</span>
+          </div>
+          <p>Interesse inicial demonstrado por parceiro imobiliário nos EUA (260 propriedades)</p>
+          <div class="bar-wrap"><div class="bar-fill" style="width: 65%"></div></div>
+        </div>
+      </div>
+
+      <div class="market-text">
+        <p>O mercado de climatização residencial e comercial no Brasil cresce consistentemente ano após ano, impulsionado pelo aumento das temperaturas médias e pela expansão da classe média.</p>
+        <p>A Polar Beats entra nesse mercado com uma <strong>proposta de valor dual</strong>: o cliente que precisaria comprar ar-condicionado E sistema de som agora resolve as duas necessidades com um único produto premium.</p>
+        <div class="highlight-box">
+          <h4>🎯 Foco B2B — Entrada Estratégica</h4>
+          <p>Clínicas odontológicas, academias, hotéis boutique, salões de beleza e restaurantes são os canais prioritários de entrada — ambientes onde conforto sonoro e climático são diferenciais competitivos para o próprio negócio.</p>
+        </div>
+        <div class="highlight-box">
+          <h4>🌎 Interesse Internacional</h4>
+          <p>Investidor da Flórida com portfólio de 260 propriedades demonstrou interesse em contrato de fornecimento de 520+ unidades — validando o potencial de exportação desde o início.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPORTUNIDADE -->
+<section id="oportunidade">
+  <div class="max-w">
+    <span class="section-label">Para Distribuidores & Investidores</span>
+    <h2 class="section-title">ENTRE NA<br>VANGUARDA.</h2>
+    <p class="section-sub">A Polar Beats está abrindo conversas com distribuidores e parceiros estratégicos para o lançamento nacional.</p>
+
+    <div class="opportunity-cards">
+      <div class="opp-card">
+        <span class="opp-icon">🤝</span>
+        <h3>Distribuidor Exclusivo</h3>
+        <p>Territórios exclusivos disponíveis por estado ou região. Seja o primeiro no seu mercado.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-icon">🏢</span>
+        <h3>Canal B2B</h3>
+        <p>Revenda para clínicas, hotéis, academias e estabelecimentos comerciais com margens premium.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-icon">💼</span>
+        <h3>Parceiro Investidor</h3>
+        <p>Oportunidade de participar de uma empresa com patente registrada e produto em fase de manufatura.</p>
+      </div>
+      <div class="opp-card">
+        <span class="opp-icon">🌐</span>
+        <h3>Exportação</h3>
+        <p>Demanda internacional já identificada. Potencial de expansão para América Latina e EUA.</p>
+      </div>
+    </div>
+
+    <div class="patent-banner">
+      <span class="patent-icon">📜</span>
+      <div class="patent-text">
+        <h3>PATENTE INPI ATIVA</h3>
+        <p>O sistema de integração de áudio no chassi lateral do split-type é protegido pela patente brasileira <strong>BR 202023011705-3</strong>, registrada no Instituto Nacional da Propriedade Industrial e válida até <strong>2038</strong>. Nenhum concorrente pode replicar legalmente o design sem licenciamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="contato">
+  <div class="max-w">
+    <div class="cta-inner">
+      <span class="section-label">Entre em Contato</span>
+      <h2 class="section-title">VAMOS CONVERSAR<br>SOBRE NEGÓCIOS.</h2>
+      <p class="section-sub">Se você é distribuidor, varejista, investidor ou gestor de uma rede comercial, queremos te apresentar a Polar Beats em detalhes.</p>
+
+      <div class="cta-buttons">
+        <a href="https://wa.me/5567999999999" class="btn-primary" target="_blank">📱 Falar pelo WhatsApp</a>
+        <a href="mailto:contato@polarbeats.com.br" class="btn-secondary">✉️ Enviar e-mail</a>
+      </div>
+
+      <p class="contact-info">
+        Ou escreva diretamente para <a href="mailto:contato@polarbeats.com.br">contato@polarbeats.com.br</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">POLAR BEATS</span>
+  <span class="footer-copy">© 2025 Polar Beats Ltda. — Pedro Juan Caballero, PY / Brasil</span>
+  <span class="footer-patent">Patente BR 202023011705-3 · INPI</span>
+</footer>
+
+</body>
+</html>
