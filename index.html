@@ -174,49 +174,12 @@
       <a href="#oportunidade">Oportunidade</a>
       <a href="#contato">Contato</a>
     </div>
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('pt')" title="Português">
-        <svg width="22" height="15" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block">
-          <rect width="8" height="15" fill="#009C3B"/>
-          <rect x="8" width="14" height="15" fill="#009C3B"/>
-          <rect width="8" height="15" fill="#009C3B"/>
-          <rect x="0" width="22" height="15" fill="#009C3B"/>
-          <polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FEDF00"/>
-          <circle cx="11" cy="7.5" r="3.2" fill="#002776"/>
-          <path d="M8,6.5 Q11,5.5 14,6.8" stroke="white" stroke-width="0.7" fill="none"/>
-        </svg>
-      </button>
-      <button class="lang-btn" onclick="setLang('en')" title="English">
-        <svg width="22" height="15" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block">
-          <rect width="22" height="15" fill="#B22234"/>
-          <rect y="1.15" width="22" height="1.15" fill="white"/>
-          <rect y="2.31" width="22" height="1.15" fill="#B22234"/>
-          <rect y="3.46" width="22" height="1.15" fill="white"/>
-          <rect y="4.62" width="22" height="1.15" fill="#B22234"/>
-          <rect y="5.77" width="22" height="1.15" fill="white"/>
-          <rect y="6.92" width="22" height="1.15" fill="#B22234"/>
-          <rect y="8.08" width="22" height="1.15" fill="white"/>
-          <rect y="9.23" width="22" height="1.15" fill="#B22234"/>
-          <rect y="10.38" width="22" height="1.15" fill="white"/>
-          <rect y="11.54" width="22" height="1.15" fill="#B22234"/>
-          <rect y="12.69" width="22" height="1.15" fill="white"/>
-          <rect width="9" height="8" fill="#3C3B6E"/>
-          <g fill="white" font-size="1.8" text-anchor="middle">
-            <text x="1.5" y="2">★</text><text x="4.5" y="2">★</text><text x="7.5" y="2">★</text>
-            <text x="3" y="3.8">★</text><text x="6" y="3.8">★</text>
-            <text x="1.5" y="5.6">★</text><text x="4.5" y="5.6">★</text><text x="7.5" y="5.6">★</text>
-            <text x="3" y="7.4">★</text><text x="6" y="7.4">★</text>
-          </g>
-        </svg>
-      </button>
-      <button class="lang-btn" onclick="setLang('es')" title="Español">
-        <svg width="22" height="15" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block">
-          <rect width="22" height="15" fill="#c60b1e"/>
-          <rect y="3.5" width="22" height="8" fill="#ffc400"/>
-        </svg>
-      </button>
-    </div>
     <a href="#contato" class="btn btn-primary nav-cta">Quero ser distribuidor</a>
+    <div style="display:flex;flex-direction:column;gap:4px;align-items:center">
+      <button onclick="setLang('pt')" title="Português" style="background:none;border:none;cursor:pointer;opacity:.4;transition:opacity .2s,transform .2s;padding:0" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=this.classList.contains('active')?1:.4" class="lang-flag active"><svg width="26" height="18" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block"><rect width="22" height="15" fill="#009C3B"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FEDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8,6.5 Q11,5.5 14,6.8" stroke="white" stroke-width="0.7" fill="none"/></svg></button>
+      <button onclick="setLang('en')" title="English" style="background:none;border:none;cursor:pointer;opacity:.4;transition:opacity .2s,transform .2s;padding:0" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=this.classList.contains('active')?1:.4" class="lang-flag"><svg width="26" height="18" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block"><rect width="22" height="15" fill="#B22234"/><rect y="1.15" width="22" height="1.15" fill="white"/><rect y="2.31" width="22" height="1.15" fill="#B22234"/><rect y="3.46" width="22" height="1.15" fill="white"/><rect y="4.62" width="22" height="1.15" fill="#B22234"/><rect y="5.77" width="22" height="1.15" fill="white"/><rect y="6.92" width="22" height="1.15" fill="#B22234"/><rect y="8.08" width="22" height="1.15" fill="white"/><rect y="9.23" width="22" height="1.15" fill="#B22234"/><rect y="10.38" width="22" height="1.15" fill="white"/><rect y="11.54" width="22" height="1.15" fill="#B22234"/><rect y="12.69" width="22" height="1.15" fill="white"/><rect width="9" height="8" fill="#3C3B6E"/><g fill="white" font-size="1.8" text-anchor="middle"><text x="1.5" y="2">★</text><text x="4.5" y="2">★</text><text x="7.5" y="2">★</text><text x="3" y="3.8">★</text><text x="6" y="3.8">★</text><text x="1.5" y="5.6">★</text><text x="4.5" y="5.6">★</text><text x="7.5" y="5.6">★</text><text x="3" y="7.4">★</text><text x="6" y="7.4">★</text></g></svg></button>
+      <button onclick="setLang('es')" title="Español" style="background:none;border:none;cursor:pointer;opacity:.4;transition:opacity .2s,transform .2s;padding:0" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=this.classList.contains('active')?1:.4" class="lang-flag"><svg width="26" height="18" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block"><rect width="22" height="15" fill="#c60b1e"/><rect y="3.5" width="22" height="8" fill="#ffc400"/></svg></button>
+    </div>
     <button class="burger" id="burger-btn" aria-label="Menu"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
   </nav>
 </div>
@@ -224,6 +187,11 @@
 <!-- MOBILE MENU -->
 <div class="mobile-overlay" id="mobile-menu">
   <button class="close-btn" id="close-btn" aria-label="Fechar"><svg viewBox="0 0 24 24" width="28px" height="28px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <div class="mobile-lang-row">
+    <button class="lang-btn active" onclick="setLang('pt')"><svg width="28" height="19" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block"><rect width="22" height="15" fill="#009C3B"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FEDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8,6.5 Q11,5.5 14,6.8" stroke="white" stroke-width="0.7" fill="none"/></svg></button>
+    <button class="lang-btn" onclick="setLang('en')"><svg width="28" height="19" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block"><rect width="22" height="15" fill="#B22234"/><rect y="1.15" width="22" height="1.15" fill="white"/><rect y="2.31" width="22" height="1.15" fill="#B22234"/><rect y="3.46" width="22" height="1.15" fill="white"/><rect y="4.62" width="22" height="1.15" fill="#B22234"/><rect y="5.77" width="22" height="1.15" fill="white"/><rect y="6.92" width="22" height="1.15" fill="#B22234"/><rect y="8.08" width="22" height="1.15" fill="white"/><rect y="9.23" width="22" height="1.15" fill="#B22234"/><rect y="10.38" width="22" height="1.15" fill="white"/><rect y="11.54" width="22" height="1.15" fill="#B22234"/><rect y="12.69" width="22" height="1.15" fill="white"/><rect width="9" height="8" fill="#3C3B6E"/><g fill="white" font-size="1.8" text-anchor="middle"><text x="1.5" y="2">★</text><text x="4.5" y="2">★</text><text x="7.5" y="2">★</text><text x="3" y="3.8">★</text><text x="6" y="3.8">★</text><text x="1.5" y="5.6">★</text><text x="4.5" y="5.6">★</text><text x="7.5" y="5.6">★</text><text x="3" y="7.4">★</text><text x="6" y="7.4">★</text></g></svg></button>
+    <button class="lang-btn" onclick="setLang('es')"><svg width="28" height="19" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg" style="border-radius:2px;display:block"><rect width="22" height="15" fill="#c60b1e"/><rect y="3.5" width="22" height="8" fill="#ffc400"/></svg></button>
+  </div>
   <a href="#produto" onclick="closeMobileMenu()">Produto</a>
   <a href="#origem" onclick="closeMobileMenu()">A Origem</a>
   <a href="#mercado" onclick="closeMobileMenu()">Mercado</a>
@@ -498,5 +466,12 @@
     }
   }
 </script>
+
+<!-- LANG SELETOR FLUTUANTE -->
+<div class="lang-float">
+  <button class="lang-float-btn active" onclick="setLangFloat('pt')" title="Português"><svg width="26" height="18" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#009C3B"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FEDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8,6.5 Q11,5.5 14,6.8" stroke="white" stroke-width="0.7" fill="none"/></svg></button>
+  <button class="lang-float-btn" onclick="setLangFloat('en')" title="English"><svg width="26" height="18" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#B22234"/><rect y="1.15" width="22" height="1.15" fill="white"/><rect y="2.31" width="22" height="1.15" fill="#B22234"/><rect y="3.46" width="22" height="1.15" fill="white"/><rect y="4.62" width="22" height="1.15" fill="#B22234"/><rect y="5.77" width="22" height="1.15" fill="white"/><rect y="6.92" width="22" height="1.15" fill="#B22234"/><rect y="8.08" width="22" height="1.15" fill="white"/><rect y="9.23" width="22" height="1.15" fill="#B22234"/><rect y="10.38" width="22" height="1.15" fill="white"/><rect y="11.54" width="22" height="1.15" fill="#B22234"/><rect y="12.69" width="22" height="1.15" fill="white"/><rect width="9" height="8" fill="#3C3B6E"/><g fill="white" font-size="1.8" text-anchor="middle"><text x="1.5" y="2">★</text><text x="4.5" y="2">★</text><text x="7.5" y="2">★</text><text x="3" y="3.8">★</text><text x="6" y="3.8">★</text><text x="1.5" y="5.6">★</text><text x="4.5" y="5.6">★</text><text x="7.5" y="5.6">★</text><text x="3" y="7.4">★</text><text x="6" y="7.4">★</text></g></svg></button>
+  <button class="lang-float-btn" onclick="setLangFloat('es')" title="Español"><svg width="26" height="18" viewBox="0 0 22 15" xmlns="http://www.w3.org/2000/svg"><rect width="22" height="15" fill="#c60b1e"/><rect y="3.5" width="22" height="8" fill="#ffc400"/></svg></button>
+</div>
 </body>
 </html>
