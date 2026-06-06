@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Polar Beats — Clima que você ouve. Som que você sente.</title>
+  <meta name="description" content="O primeiro ar-condicionado do mundo com sistema de áudio premium integrado. Patente INPI BR 202023011705-3."/>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --ink:#050B18;--ink-2:#091224;--ink-3:#0e1a30;
+      --line:rgba(255,255,255,.09);--line-2:rgba(255,255,255,.16);
+      --text:#eef2f7;--muted:#8b97a8;
+      --cold:#5DD1FF;--cold-deep:#2F8FC4;
+      --warm:#C3D2E0;--warm-deep:#8A9DB1;--silver-hi:#F4F8FC;
+    }
+    body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--ink);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    h1,h2,h3{font-family:"Syne",sans-serif;line-height:1.05;letter-spacing:-.01em}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+    .chrome{background:linear-gradient(180deg,var(--silver-hi),#AEBECE 55%,#7E92A6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+    /* NAV */
+    .nav-fix{position:fixed;top:0;left:0;right:0;z-index:50}
+    nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;transition:all .3s}
+    nav.scrolled{background:rgba(5,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .logo{display:flex;align-items:center;gap:10px;font-family:"Syne";font-weight:800;font-size:19px;letter-spacing:-.02em}
+    .logo img{width:36px;height:36px;border-radius:9px;object-fit:cover}
+    .nav-links{display:flex;gap:28px;align-items:center;font-size:14.5px;color:var(--muted)}
+    .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--text)}
+    .burger{display:none;background:none;border:none;color:var(--text);cursor:pointer;padding:4px}
+    .mobile-overlay{display:none;position:fixed;inset:0;z-index:49;background:rgba(5,11,24,.97);backdrop-filter:blur(10px);flex-direction:column;gap:8px;padding:90px 24px 24px}
+    .mobile-overlay.open{display:flex}
+    .mobile-overlay a{font-family:"Syne";font-weight:700;font-size:24px;padding:12px 0;border-bottom:1px solid var(--line)}
+    .close-btn{position:absolute;top:22px;right:22px;background:none;border:none;color:var(--text);cursor:pointer}
+
+    /* BUTTONS */
+    .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:10px;cursor:pointer;border:1px solid transparent;transition:transform .15s,box-shadow .2s;font-family:"Hanken Grotesk"}
+    .btn:focus-visible{outline:2px solid var(--cold);outline-offset:3px}
+    .btn-primary{background:linear-gradient(135deg,var(--cold),var(--cold-deep));color:#04141a}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(93,209,255,.5)}
+    .btn-ghost{background:transparent;color:var(--text);border-color:var(--line-2)}
+    .btn-ghost:hover{background:rgba(255,255,255,.05);border-color:var(--text)}
+
+    /* HERO */
+    #topo{position:relative;padding:150px 0 70px}
+    .glow{position:absolute;border-radius:50%;filter:blur(20px);pointer-events:none}
+    .glow-1{top:-10%;right:-5%;width:620px;height:620px;background:radial-gradient(circle,rgba(93,209,255,.18),transparent 65%)}
+    .glow-2{bottom:-20%;left:-10%;width:520px;height:520px;background:radial-gradient(circle,rgba(47,143,196,.14),transparent 65%)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;position:relative}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.04em;color:var(--cold);padding:6px 13px;border-radius:999px;border:1px solid rgba(93,209,255,.32);background:rgba(93,209,255,.07);margin-bottom:26px}
+    .eyebrow i{width:14px;height:14px}
+    h1{font-size:clamp(44px,6.2vw,78px);font-weight:800;margin-bottom:22px}
+    h1 .grad{color:var(--cold);text-shadow:0 0 30px rgba(93,209,255,.4)}
+    .hero-sub{font-size:clamp(16px,1.9vw,19px);color:var(--muted);max-width:520px;margin-bottom:34px}
+    .hero-sub strong{color:var(--text);font-weight:600}
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+    .product-frame{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 70% 20%,rgba(93,209,255,.16),transparent 55%),linear-gradient(160deg,var(--ink-3),var(--ink-2));display:grid;place-items:center}
+    .img-ph{display:grid;place-items:center;gap:10px;color:var(--muted);text-align:center;padding:20px}
+    .img-ph span{font-size:12px;opacity:.7;letter-spacing:.04em}
+
+    /* STATS */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:64px}
+    .stat{background:var(--ink-2);padding:26px 22px}
+    .stat-num{font-family:"Syne";font-weight:800;font-size:34px;line-height:1;margin-bottom:8px;background:linear-gradient(180deg,var(--silver-hi),#9FB2C4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-num.cold{background:none;-webkit-text-fill-color:var(--cold)}
+    .stat-num.warm{background:none;-webkit-text-fill-color:var(--cold)}
+    .stat-label{font-size:13.5px;color:var(--muted)}
+
+    /* SECTIONS */
+    section{padding:96px 0}
+    section.alt{background:var(--ink-2)}
+    .kicker{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cold);margin-bottom:16px}
+    .kicker.warm{color:#6FB6E2}
+    h2{font-size:clamp(28px,4vw,46px);font-weight:800;max-width:760px;margin-bottom:20px}
+    .lead{font-size:17px;color:var(--muted);max-width:620px;margin-bottom:48px}
+
+    /* PRODUCT */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:56px}
+    .gallery .product-frame{aspect-ratio:3/4;border-radius:16px}
+    .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .feature{padding:26px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);transition:transform .2s,border-color .2s}
+    .feature:hover{transform:translateY(-4px);border-color:var(--line-2)}
+    .feat-icon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:18px;background:rgba(93,209,255,.12);color:var(--cold)}
+    .feat-icon.warm{background:rgba(195,210,224,.12);color:var(--warm)}
+    .feat-icon i{width:22px;height:22px}
+    .feature h3{font-size:18px;font-weight:700;margin-bottom:10px}
+    .feature p{font-size:14.5px;color:var(--muted)}
+
+    /* ORIGIN */
+    .origin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
+    .origin-card{padding:30px;border-radius:18px;border:1px solid var(--line);background:var(--ink)}
+    .origin-step{font-family:"Syne";font-weight:800;font-size:14px;color:var(--warm);margin-bottom:16px;letter-spacing:.04em}
+    .origin-card h3{font-size:20px;font-weight:700;margin-bottom:12px}
+    .origin-card p{font-size:14.5px;color:var(--muted)}
+
+    /* WHY */
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+    .why-card{padding:28px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);display:flex;gap:18px}
+    .why-icon{flex-shrink:0;width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:rgba(93,209,255,.12);color:var(--cold)}
+    .why-icon i{width:21px;height:21px}
+    .why-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+    .why-card p{font-size:14px;color:var(--muted)}
+
+    /* VALIDATION */
+    .val-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:48px}
+    .val-stat{padding:30px;border-radius:18px;border:1px solid var(--line);background:var(--ink)}
+    .val-num{font-family:"Syne";font-weight:800;font-size:40px;line-height:1;margin-bottom:12px;background:linear-gradient(180deg,var(--silver-hi),#9FB2C4);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .val-num.cold{background:none;-webkit-text-fill-color:var(--cold)}
+    .val-num.warm{background:none;-webkit-text-fill-color:var(--cold)}
+    .val-stat p{font-size:14px;color:var(--muted)}
+    .val-meta{font-size:12px;color:var(--muted);opacity:.75;margin-top:8px;font-style:italic}
+    .val-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .val-block{padding:22px;border-radius:14px;border:1px solid var(--line)}
+    .val-block h4{font-size:15.5px;font-weight:700;margin-bottom:8px}
+    .val-block p{font-size:13.5px;color:var(--muted)}
+
+    /* OPPORTUNITY */
+    .opp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-bottom:40px}
+    .opp-card{padding:28px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);transition:border-color .2s,transform .2s}
+    .opp-card:hover{transform:translateY(-4px);border-color:var(--cold)}
+    .opp-icon{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;background:rgba(93,209,255,.12);color:var(--cold)}
+    .opp-icon i{width:21px;height:21px}
+    .opp-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+    .opp-card p{font-size:14px;color:var(--muted)}
+    .patent-banner{display:flex;gap:20px;align-items:center;padding:28px 32px;border-radius:18px;border:1px solid rgba(93,209,255,.3);background:linear-gradient(110deg,rgba(93,209,255,.09),rgba(47,143,196,.06))}
+    .patent-ic{flex-shrink:0;width:52px;height:52px;border-radius:13px;display:grid;place-items:center;background:rgba(93,209,255,.14);color:var(--cold)}
+    .patent-ic i{width:26px;height:26px}
+    .patent-banner h4{font-family:"Syne";font-weight:700;font-size:16px;margin-bottom:6px;letter-spacing:.04em}
+    .patent-banner p{font-size:14px;color:var(--muted)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+    .contact-actions{display:flex;flex-direction:column;gap:14px;margin:28px 0}
+    .contact-line{font-size:14px;color:var(--muted)}
+    .pb-form{padding:30px;border-radius:20px;border:1px solid var(--line);background:var(--ink)}
+    .field{margin-bottom:18px}
+    .field label{display:block;font-size:13px;font-weight:600;margin-bottom:8px}
+    .pb-input,.pb-textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--ink-3);color:var(--text);font-family:"Hanken Grotesk";font-size:14.5px}
+    .pb-input:focus,.pb-textarea:focus{outline:none;border-color:var(--cold)}
+    .pb-textarea{resize:vertical;min-height:90px}
+    .radios{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .radio{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:10px;border:1px solid var(--line-2);background:var(--ink-3);cursor:pointer;font-size:13.5px;transition:all .15s;user-select:none}
+    .radio.active{border-color:var(--cold);background:rgba(93,209,255,.08);color:var(--cold)}
+    .radio-full{grid-column:1/-1}
+    .rmark{width:15px;height:15px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;flex-shrink:0}
+    .rfill{width:7px;height:7px;border-radius:50%;background:var(--cold);display:none}
+    .radio.active .rfill{display:block}
+    .form-ok{display:none;text-align:center;padding:40px 20px}
+    .form-ok.show{display:block}
+    .form-fields.hide{display:none}
+    .ok-ic{width:60px;height:60px;border-radius:50%;background:rgba(93,209,255,.12);color:var(--cold);display:grid;place-items:center;margin:0 auto 18px}
+    .ok-ic i{width:28px;height:28px}
+    .form-ok h3{font-size:22px;margin-bottom:10px}
+    .form-ok p{color:var(--muted);font-size:14.5px}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--line);padding:44px 0 36px;background:var(--ink)}
+    .footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:26px}
+    .footer-social{display:flex;gap:10px;flex-wrap:wrap}
+    .social-link{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);padding:9px 14px;border:1px solid var(--line);border-radius:10px;transition:color .18s,border-color .18s}
+    .social-link:hover{color:var(--cold);border-color:var(--cold)}
+    .social-link i{width:16px;height:16px}
+    .footer-contact{display:flex;gap:22px;flex-wrap:wrap;margin:6px 0 22px;font-size:13.5px;color:var(--muted)}
+    .footer-contact .row{display:inline-flex;align-items:center;gap:8px}
+    .footer-contact img{border-radius:3px}
+    .footer-meta{font-size:13px;color:var(--muted)}
+    .disclaimer{font-size:11.5px;color:var(--muted);opacity:.6;max-width:720px;line-height:1.5;padding-top:20px;border-top:1px solid var(--line);margin-top:20px}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}}
+
+    /* WHATSAPP SVG */
+    .wa-svg{display:block;flex-shrink:0}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr;gap:36px}
+      .product-frame{aspect-ratio:16/12}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .origin-grid{grid-template-columns:1fr}
+      .val-stats{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr;gap:32px}
+      .nav-links,.nav-cta{display:none}
+      .burger{display:block}
+    }
+    @media(max-width:560px){
+      .gallery{grid-template-columns:1fr}
+      .radios{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      .patent-banner{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-fix">
+  <nav id="navbar">
+    <a href="#topo" class="logo">
+      <img src="data:image/jpeg;base64,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" alt="Polar Beats"/>
+      Polar Beats
+    </a>
+    <div class="nav-links">
+      <a href="#produto">Produto</a>
+      <a href="#origem">A Origem</a>
+      <a href="#mercado">Mercado</a>
+      <a href="#oportunidade">Oportunidade</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a href="#contato" class="btn btn-primary nav-cta">Quero ser distribuidor</a>
+    <button class="burger" id="burger-btn" aria-label="Menu"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+  </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-overlay" id="mobile-menu">
+  <button class="close-btn" id="close-btn" aria-label="Fechar"><svg viewBox="0 0 24 24" width="28px" height="28px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+  <a href="#produto" onclick="closeMobileMenu()">Produto</a>
+  <a href="#origem" onclick="closeMobileMenu()">A Origem</a>
+  <a href="#mercado" onclick="closeMobileMenu()">Mercado</a>
+  <a href="#oportunidade" onclick="closeMobileMenu()">Oportunidade</a>
+  <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+</div>
+
+<!-- HERO -->
+<header id="topo">
+  <div class="glow glow-1" aria-hidden="true"></div>
+  <div class="glow glow-2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="reveal">
+          <span class="eyebrow"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg> Patente registrada no INPI · BR 202023011705-3</span>
+        </div>
+        <div class="reveal" style="transition-delay:80ms">
+          <h1><span class="chrome">CLIMA QUE</span> <span class="grad">VOCÊ OUVE.</span></h1>
+        </div>
+        <div class="reveal" style="transition-delay:160ms">
+          <p class="hero-sub">O primeiro ar-condicionado do mundo com <strong>sistema de áudio premium integrado</strong> — uma categoria inteiramente nova no mercado de climatização.</p>
+        </div>
+        <div class="reveal" style="transition-delay:240ms">
+          <div class="hero-cta">
+            <a href="#contato" class="btn btn-primary">Quero ser distribuidor <svg viewBox="0 0 24 24" width="17px" height="17px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a href="#produto" class="btn btn-ghost">Conhecer o produto</a>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:200ms">
+        <div class="product-frame">
+          <div class="img-ph"><svg viewBox="0 0 24 24" width="26px" height="26px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>produto-black.jpg</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:120ms">
+      <div class="stats">
+        <div class="stat"><div class="stat-num cold">52%</div><div class="stat-label">Taxa de aceitação nacional</div></div>
+        <div class="stat"><div class="stat-num">2038</div><div class="stat-label">Validade da patente INPI</div></div>
+        <div class="stat"><div class="stat-num warm">1ª</div><div class="stat-label">Categoria no segmento</div></div>
+        <div class="stat"><div class="stat-num">B2B</div><div class="stat-label">Foco em alto tráfego</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PRODUTO -->
+<section id="produto" class="alt">
+  <div class="wrap">
+    <div class="reveal"><p class="kicker">O Produto</p></div>
+    <div class="reveal" style="transition-delay:60ms"><h2>AR-CONDICIONADO. SISTEMA DE SOM. UMA SÓ PEÇA.</h2></div>
+    <div class="reveal" style="transition-delay:120ms"><p class="lead">A Polar Beats integra tecnologia de áudio de alta fidelidade diretamente no chassi lateral de um split inverter — sem ocupar espaço extra, sem cabos adicionais.</p></div>
+    <div class="reveal" style="transition-delay:140ms">
+      <div class="gallery">
+        <div class="product-frame"><div class="img-ph"><svg viewBox="0 0 24 24" width="22px" height="22px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>produto-black.jpg</span></div></div>
+        <div class="product-frame"><div class="img-ph"><svg viewBox="0 0 24 24" width="22px" height="22px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>produto-white.jpg</span></div></div>
+        <div class="product-frame"><div class="img-ph"><svg viewBox="0 0 24 24" width="22px" height="22px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>app.jpg</span></div></div>
+      </div>
+    </div>
+    <div class="features">
+      <div class="reveal feature"><div class="feat-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div><h3>Áudio Premium de Alta Fidelidade</h3><p>Drivers de alta fidelidade no chassi lateral garantem dispersão sonora em 180° — cobertura total do ambiente sem caixas externas.</p></div>
+      <div class="reveal feature" style="transition-delay:60ms"><div class="feat-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/></svg></div><h3>Integração Spotify & Bluetooth</h3><p>Controle de playlist, temperatura e iluminação Aura num único painel pelo app Polar Beats, sem trocar de tela.</p></div>
+      <div class="reveal feature" style="transition-delay:120ms"><div class="feat-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></div><h3>Modo Sleep Masking</h3><p>Algoritmo detecta o ruído externo e ajusta automaticamente sons ambiente — chuva, white noise, natureza — para um sono de qualidade.</p></div>
+      <div class="reveal feature" style="transition-delay:180ms"><div class="feat-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg></div><h3>Climatização inverter de alta eficiência</h3><p>Tecnologia inverter reduz consumo em até 60% comparado a modelos convencionais, mantendo temperatura constante.</p></div>
+      <div class="reveal feature" style="transition-delay:240ms"><div class="feat-icon warm"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><h3>Aura Light — iluminação ambiente</h3><p>LED RGB integrado que sincroniza com a música e cria atmosferas personalizadas para trabalho, relaxamento ou entretenimento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORIGEM -->
+<section id="origem">
+  <div class="wrap">
+    <div class="reveal"><p class="kicker warm">A Origem</p></div>
+    <div class="reveal" style="transition-delay:60ms"><h2>ALGUNS INVENTORES ABANDONAM SUAS IDEIAS. OUTROS ESPERAM O MOMENTO CERTO.</h2></div>
+    <div class="origin-grid">
+      <div class="reveal origin-card"><p class="origin-step">01 · 12 ANOS DE CONVICÇÃO</p><h3>12 Anos de Convicção</h3><p>A ideia nasceu há 12 anos. Parecia cedo demais — e era. O mercado, a tecnologia e o consumidor precisavam amadurecer. A ideia ficou guardada. A convicção, nunca.</p></div>
+      <div class="reveal origin-card" style="transition-delay:90ms"><p class="origin-step">02 · O ESPAÇO VAZIO</p><h3>O Espaço que Ninguém Ocupou</h3><p>Gree, Midea, LG e Samsung competiram décadas em preço, BTU e eficiência. Ninguém perguntou: e se o ar-condicionado pudesse fazer mais? Esse espaço sempre existiu — faltava enxergá-lo.</p></div>
+      <div class="reveal origin-card" style="transition-delay:180ms"><p class="origin-step">03 · SAINDO DO PAPEL</p><h3>Agora Saindo do Papel</h3><p>A Polar Beats não compete com os grandes — cria uma categoria que eles não ocupam. Quem quer clima e som hoje compra dois produtos. A Polar Beats resolve com um equipamento patenteado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MERCADO -->
+<section id="mercado" class="alt">
+  <div class="wrap">
+    <div class="reveal"><p class="kicker">Por que a Polar Beats</p></div>
+    <div class="reveal" style="transition-delay:60ms"><h2>UMA CATEGORIA. ZERO CONCORRENTES.</h2></div>
+    <div class="reveal" style="transition-delay:120ms"><p class="lead">Não existe no mercado brasileiro — nem global — nenhum produto que una climatização e áudio premium num equipamento fixo patenteado.</p></div>
+    <div class="why-grid">
+      <div class="reveal why-card"><span class="why-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span><div><h3>Inovação patenteada</h3><p>Patente INPI válida até 2038, com proteção sobre o design de integração do áudio no chassi lateral.</p></div></div>
+      <div class="reveal why-card" style="transition-delay:70ms"><span class="why-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></span><div><h3>Mercado B2B imediato</h3><p>Clínicas, academias, hotéis, salões e restaurantes — ambientes que já precisam de ar e som separados.</p></div></div>
+      <div class="reveal why-card" style="transition-delay:140ms"><span class="why-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span><div><h3>Substitui dois produtos</h3><p>Um investimento que elimina comprar e instalar ar-condicionado e sistema de som separadamente.</p></div></div>
+      <div class="reveal why-card"><span class="why-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span><div><h3>Ecossistema inteligente</h3><p>App proprietário que centraliza climatização, áudio e iluminação num só painel.</p></div></div>
+      <div class="reveal why-card" style="transition-delay:70ms"><span class="why-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span><div><h3>Mercado inexplorado</h3><p>Setor de bilhões por ano no Brasil. A Polar Beats entra como premium disruptor, sem competição direta.</p></div></div>
+      <div class="reveal why-card" style="transition-delay:140ms"><span class="why-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></span><div><h3>Pronto para distribuição</h3><p>Produto em fase final de manufatura, com parceiro industrial ativo e produção estabelecida.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDAÇÃO -->
+<section>
+  <div class="wrap">
+    <div class="reveal"><p class="kicker warm">Validação de Mercado</p></div>
+    <div class="reveal" style="transition-delay:60ms"><h2>OS NÚMEROS FALAM.</h2></div>
+    <div class="reveal" style="transition-delay:120ms"><p class="lead">Pesquisa de aceitação realizada em âmbito nacional confirma o potencial do produto antes mesmo do lançamento.</p></div>
+    <div class="val-stats">
+      <div class="reveal val-stat"><div class="val-num cold">52%</div><p>Taxa de intenção de compra, realizada apenas com a descrição do conceito — sem imagens ou protótipo.</p><p class="val-meta">Pesquisa de intenção de compra · [nº respondentes] · âmbito nacional · [ano]</p></div>
+      <div class="reveal val-stat" style="transition-delay:80ms"><div class="val-num warm">R$ 50 bi</div><p>Tamanho estimado do mercado brasileiro de ar-condicionado por ano.</p></div>
+      <div class="reveal val-stat" style="transition-delay:160ms"><div class="val-num">15+ anos</div><p>Patente INPI ativa até 2038 — exclusividade legal antes de qualquer concorrente.</p></div>
+    </div>
+    <div class="val-blocks">
+      <div class="reveal val-block"><h4>Proposta de Valor Dual</h4><p>O cliente que precisaria comprar ar-condicionado E sistema de som resolve as duas necessidades com um único produto premium.</p></div>
+      <div class="reveal val-block" style="transition-delay:60ms"><h4>Demanda Antes do Lançamento</h4><p>Pedidos registrados ainda na fase de conceito — validação de demanda real antes do produto existir fisicamente.</p></div>
+      <div class="reveal val-block" style="transition-delay:120ms"><h4>Foco B2B Estratégico</h4><p>Clínicas, academias, hotéis boutique, salões e restaurantes são os canais prioritários de entrada.</p></div>
+      <div class="reveal val-block" style="transition-delay:180ms"><h4>Demanda Internacional</h4><p>Conversas em andamento com gestores de portfólio imobiliário nos EUA, ainda na fase de conceito.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPORTUNIDADE -->
+<section id="oportunidade" class="alt">
+  <div class="wrap">
+    <div class="reveal"><p class="kicker">Para Distribuidores & Investidores</p></div>
+    <div class="reveal" style="transition-delay:60ms"><h2>ENTRE NA VANGUARDA.</h2></div>
+    <div class="reveal" style="transition-delay:120ms"><p class="lead">A Polar Beats está abrindo conversas com distribuidores e parceiros estratégicos para o lançamento nacional.</p></div>
+    <div class="opp-grid">
+      <div class="reveal opp-card"><div class="opp-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></div><h3>Distribuidor Exclusivo</h3><p>Territórios exclusivos disponíveis por estado ou região. Seja o primeiro no seu mercado.</p></div>
+      <div class="reveal opp-card" style="transition-delay:70ms"><div class="opp-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div><h3>Canal B2B</h3><p>Revenda para clínicas, hotéis, academias e estabelecimentos comerciais com margens premium.</p></div>
+      <div class="reveal opp-card" style="transition-delay:140ms"><div class="opp-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><h3>Parceiro Investidor</h3><p>Participe de uma empresa com patente registrada e produto em fase de manufatura.</p></div>
+      <div class="reveal opp-card" style="transition-delay:210ms"><div class="opp-icon"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div><h3>Exportação</h3><p>Demanda internacional já identificada. Potencial de expansão para América Latina e EUA.</p></div>
+    </div>
+    <div class="reveal patent-banner">
+      <div class="patent-ic"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <div>
+        <h4>PATENTE INPI ATIVA</h4>
+        <p>O sistema de integração de áudio no chassi lateral do split é protegido pela patente brasileira BR 202023011705-3, válida até 2038. Nenhum concorrente pode replicar legalmente o design sem licenciamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="reveal"><p class="kicker warm">Entre em Contato</p></div>
+        <div class="reveal" style="transition-delay:60ms"><h2>VAMOS CONVERSAR SOBRE NEGÓCIOS.</h2></div>
+        <div class="reveal" style="transition-delay:120ms"><p class="lead" style="margin-bottom:0">Se você é distribuidor, varejista, investidor ou gestor de uma rede comercial, queremos te apresentar a Polar Beats em detalhes.</p></div>
+        <div class="reveal contact-actions" style="transition-delay:160ms">
+          <a href="https://wa.me/5567999999999" target="_blank" class="btn btn-primary">
+            <svg class="wa-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar pelo WhatsApp
+          </a>
+          <a href="mailto:contato@polarbeats.com.br" class="btn btn-ghost"><svg viewBox="0 0 24 24" width="18px" height="18px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Enviar e-mail</a>
+        </div>
+        <div class="reveal" style="transition-delay:200ms">
+          <p class="contact-line">Ou escreva para <strong style="color:var(--cold)">contato@polarbeats.com.br</strong></p>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:120ms">
+        <div class="pb-form">
+          <div class="form-fields" id="form-fields">
+            <div class="field"><label for="f-nome">Nome</label><input id="f-nome" class="pb-input" placeholder="Seu nome"/></div>
+            <div class="field"><label for="f-emp">Empresa</label><input id="f-emp" class="pb-input" placeholder="Nome da empresa"/></div>
+            <div class="field">
+              <label>Tipo de interesse</label>
+              <div class="radios" id="radios">
+                <div class="radio active" data-val="Distribuidor"><span class="rmark"><span class="rfill"></span></span> Distribuidor</div>
+                <div class="radio" data-val="Canal B2B"><span class="rmark"><span class="rfill"></span></span> Canal B2B</div>
+                <div class="radio" data-val="Investidor"><span class="rmark"><span class="rfill"></span></span> Investidor</div>
+                <div class="radio" data-val="Exportação"><span class="rmark"><span class="rfill"></span></span> Exportação</div>
+                <div class="radio radio-full" data-val="Outros assuntos"><span class="rmark"><span class="rfill"></span></span> Outros assuntos</div>
+              </div>
+            </div>
+            <div class="field"><label for="f-email">E-mail</label><input id="f-email" type="email" class="pb-input" placeholder="voce@empresa.com"/></div>
+            <div class="field"><label for="f-msg">Mensagem</label><textarea id="f-msg" class="pb-textarea" placeholder="Conte um pouco sobre seu interesse..."></textarea></div>
+            <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="enviarForm()">
+              <svg viewBox="0 0 24 24" width="17px" height="17px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg> Enviar mensagem
+            </button>
+          </div>
+          <div class="form-ok" id="form-ok">
+            <div class="ok-ic"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h3>Mensagem registrada!</h3>
+            <p id="ok-msg">Em breve a equipe Polar Beats entra em contato.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#topo" class="logo">Polar Beats</a>
+      <div class="footer-social">
+        <a class="social-link" href="https://wa.me/5567999999999" target="_blank">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a class="social-link" href="https://instagram.com/polarbeats" target="_blank"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> @polarbeats</a>
+        <a class="social-link" href="mailto:contato@polarbeats.com.br"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> E-mail</a>
+      </div>
+    </div>
+    <div class="footer-contact">
+      <span class="row"><img src="https://flagcdn.com/24x18/py.png" srcset="https://flagcdn.com/48x36/py.png 2x" width="24" height="18" alt="Paraguai"/> +595 45678-90123</span>
+      <span class="row"><img src="https://flagcdn.com/24x18/br.png" srcset="https://flagcdn.com/48x36/br.png 2x" width="24" height="18" alt="Brasil"/> +55 67 99999.9999</span>
+      <span class="row">Weimar Gonçalves Torres, 1265, Sala 619, Centro, Dourados – MS</span>
+      <span class="row"><svg viewBox="0 0 24 24" width="15px" height="15px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;color:var(--cold)"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> contato@polarbeats.com.br</span>
+    </div>
+    <div class="footer-meta">Polar Beats © 2026 · Brasil · Paraguai · Patente BR 202023011705-3 · INPI</div>
+    <p class="disclaimer">Protótipo conceitual. O design, as funcionalidades e os acabamentos apresentados poderão ser refinados durante o processo de industrialização e produção.</p>
+  </div>
+</footer>
+
+<script>
+  // Inicializa ícones Lucide
+// Logo no nav (base64 embutido para funcionar offline)
+  document.querySelectorAll('.logo img').forEach(img => {
+    img.src = "data:image/jpeg;base64,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";
+  });
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  document.getElementById('burger-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.add('open');
+  });
+  document.getElementById('close-btn').addEventListener('click', closeMobileMenu);
+  function closeMobileMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Radio buttons
+  document.querySelectorAll('.radio').forEach(r => {
+    r.addEventListener('click', () => {
+      document.querySelectorAll('.radio').forEach(x => x.classList.remove('active'));
+      r.classList.add('active');
+    });
+  });
+
+  // Form submit
+  function enviarForm() {
+    const nome = document.getElementById('f-nome').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    if (!nome || !email) { alert('Por favor preencha pelo menos nome e e-mail.'); return; }
+    document.getElementById('form-fields').classList.add('hide');
+    document.getElementById('form-ok').classList.add('show');
+    document.getElementById('ok-msg').textContent = 'Obrigado, ' + nome.split(' ')[0] + '. Em breve a equipe Polar Beats entra em contato.';
+  }
+</script>
+</body>
+</html>
