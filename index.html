@@ -475,13 +475,42 @@
   });
 
   // Form submit
-  function enviarForm() {
-    const nome = document.getElementById('f-nome').value.trim();
-    const email = document.getElementById('f-email').value.trim();
+  async function enviarForm() {
+    const nome    = document.getElementById('f-nome').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const empresa = document.getElementById('f-emp').value.trim();
+    const msg     = document.getElementById('f-msg').value.trim();
+    const inter   = document.querySelector('.radio.active')?.dataset?.val || '';
     if (!nome || !email) { alert('Por favor preencha pelo menos nome e e-mail.'); return; }
-    document.getElementById('form-fields').classList.add('hide');
-    document.getElementById('form-ok').classList.add('show');
-    document.getElementById('ok-msg').textContent = 'Obrigado, ' + nome.split(' ')[0] + '. Em breve a equipe Polar Beats entra em contato.';
+
+    // TODO: substituir pela chave real obtida em web3forms.com
+    const WEB3FORMS_KEY = '25f463ee-6eb4-4bc9-a33e-719d7e378507';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: 'Novo contato Polar Beats — ' + inter,
+          name: nome,
+          email: email,
+          empresa: empresa,
+          interesse: inter,
+          message: msg || '(sem mensagem)'
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById('form-fields').classList.add('hide');
+        document.getElementById('form-ok').classList.add('show');
+        document.getElementById('ok-msg').textContent = 'Obrigado, ' + nome.split(' ')[0] + '. Em breve a equipe Polar Beats entra em contato.';
+      } else {
+        alert('Erro ao enviar. Tente pelo WhatsApp ou e-mail.');
+      }
+    } catch(e) {
+      alert('Erro de conexão. Tente pelo WhatsApp ou e-mail.');
+    }
   }
 </script>
 </body>
