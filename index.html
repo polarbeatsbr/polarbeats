@@ -25,7 +25,7 @@
 
     /* NAV */
     .nav-fix{position:fixed;top:0;left:0;right:0;z-index:50}
-    nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;transition:all .3s}
+    nav{width:100%;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;transition:all .3s}
     nav.scrolled{background:rgba(5,11,24,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
     .logo{display:flex;align-items:center;gap:10px;font-family:"Syne";font-weight:800;font-size:19px;letter-spacing:-.02em}
     .logo img{width:36px;height:36px;border-radius:9px;object-fit:cover}
@@ -253,7 +253,7 @@
       </div>
       <div class="reveal" style="transition-delay:200ms">
         <div class="product-frame">
-          <div class="img-ph"><svg viewBox="0 0 24 24" width="26px" height="26px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>produto-black.jpg</span></div>
+          <img src="produto-black.jpg" alt="Polar Beats — produto preto" style="width:100%;height:100%;object-fit:contain;padding:20px"/>
         </div>
       </div>
     </div>
@@ -276,9 +276,9 @@
     <div class="reveal" style="transition-delay:120ms"><p class="lead">A Polar Beats integra tecnologia de áudio de alta fidelidade diretamente no chassi lateral de um split inverter — sem ocupar espaço extra, sem cabos adicionais.</p></div>
     <div class="reveal" style="transition-delay:140ms">
       <div class="gallery">
-        <div class="product-frame"><div class="img-ph"><svg viewBox="0 0 24 24" width="22px" height="22px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>produto-black.jpg</span></div></div>
-        <div class="product-frame"><div class="img-ph"><svg viewBox="0 0 24 24" width="22px" height="22px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>produto-white.jpg</span></div></div>
-        <div class="product-frame"><div class="img-ph"><svg viewBox="0 0 24 24" width="22px" height="22px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;flex-shrink:0;opacity:.3"><line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/></svg><span>app.jpg</span></div></div>
+        <div class="product-frame"><img src="produto-black.jpg" alt="Polar Beats versão preta" style="width:100%;height:100%;object-fit:contain;padding:16px"/></div>
+        <div class="product-frame"><img src="produto-white.jpg" alt="Polar Beats versão branca" style="width:100%;height:100%;object-fit:contain;padding:16px"/></div>
+        <div class="product-frame"><img src="app.jpg" alt="Polar Beats app" style="width:100%;height:100%;object-fit:contain;padding:16px"/></div>
       </div>
     </div>
     <div class="features">
@@ -328,7 +328,7 @@
     <div class="reveal" style="transition-delay:60ms"><h2>OS NÚMEROS FALAM.</h2></div>
     <div class="reveal" style="transition-delay:120ms"><p class="lead">Pesquisa de aceitação realizada em âmbito nacional confirma o potencial do produto antes mesmo do lançamento.</p></div>
     <div class="val-stats">
-      <div class="reveal val-stat"><div class="val-num cold">52%</div><p>Taxa de intenção de compra, realizada apenas com a descrição do conceito — sem imagens ou protótipo.</p><p class="val-meta">Pesquisa de intenção de compra · [nº respondentes] · âmbito nacional · [ano]</p></div>
+      <div class="reveal val-stat"><div class="val-num cold">52%</div><p>Taxa de intenção de compra, realizada apenas com a descrição do conceito — sem imagens ou protótipo.</p><p class="val-meta">Pesquisa de intenção de compra · Instituto RT Soluções · âmbito nacional · 2025</p></div>
       <div class="reveal val-stat" style="transition-delay:80ms"><div class="val-num warm">R$ 50 bi</div><p>Tamanho estimado do mercado brasileiro de ar-condicionado por ano.</p></div>
       <div class="reveal val-stat" style="transition-delay:160ms"><div class="val-num">15+ anos</div><p>Patente INPI ativa até 2038 — exclusividade legal antes de qualquer concorrente.</p></div>
     </div>
@@ -337,6 +337,8 @@
       <div class="reveal val-block" style="transition-delay:60ms"><h4>Demanda Antes do Lançamento</h4><p>Pedidos registrados ainda na fase de conceito — validação de demanda real antes do produto existir fisicamente.</p></div>
       <div class="reveal val-block" style="transition-delay:120ms"><h4>Foco B2B Estratégico</h4><p>Clínicas, academias, hotéis boutique, salões e restaurantes são os canais prioritários de entrada.</p></div>
       <div class="reveal val-block" style="transition-delay:180ms"><h4>Demanda Internacional</h4><p>Conversas em andamento com gestores de portfólio imobiliário nos EUA, ainda na fase de conceito.</p></div>
+      <div class="reveal val-block" style="transition-delay:240ms"><h4>38% de crescimento em 12 meses</h4><p>O mercado nacional de ar-condicionado cresceu 38% de 2023 a 2024, ritmo mantido no cenário pós-pandêmico — a Polar Beats entra exatamente no pico dessa ascensão.</p></div>
+      <div class="reveal val-block" style="transition-delay:300ms"><h4>95% da demanda nas regiões quentes</h4><p>Centro-Oeste, Norte, Nordeste e Sudeste concentram virtualmente toda a demanda nacional — os territórios prioritários para distribuidores da Polar Beats.</p></div>
     </div>
   </div>
 </section>
