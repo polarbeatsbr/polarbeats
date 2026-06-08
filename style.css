@@ -252,6 +252,7 @@ nav {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .nav-fix.scrolled {
@@ -293,6 +294,14 @@ nav {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-muted);
+}
+
+@media (min-width: 961px) {
+  .nav-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .nav-links a {
