@@ -1607,20 +1607,22 @@ h1 {
   font-size: 15px;
 }
 
-/* Animations for reveal */
-.reveal {
+/* Animations for reveal — Progressive Enhancement
+   Content is VISIBLE by default. JS adds .js-ready to <html>,
+   then .reveal elements animate in via IntersectionObserver. */
+.js-ready .reveal {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.reveal.in {
+.js-ready .reveal.in {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media(prefers-reduced-motion: reduce) {
-  .reveal {
+  .js-ready .reveal {
     transition: none;
     opacity: 1;
     transform: none;
