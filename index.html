@@ -5,11 +5,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Polar Beats — Clima que você ouve. Som que você sente.</title>
   <meta name="description" content="O primeiro ar-condicionado do mundo com sistema de áudio premium integrado. Patente INPI BR 202023011705-3. Climatização de alta eficiência e som de alta fidelidade."/>
+  <meta name="author" content="Polar Beats"/>
+  <meta name="theme-color" content="#020510"/>
+
+  <!-- Open Graph / WhatsApp / Social Sharing -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://www.polarbeats.com.br/"/>
+  <meta property="og:title" content="Polar Beats — Clima que você ouve. Som que você sente."/>
+  <meta property="og:description" content="O primeiro ar-condicionado do mundo com sistema de áudio premium integrado. Patente global registrada. Uma categoria inteiramente nova no mercado."/>
+  <meta property="og:image" content="https://www.polarbeats.com.br/produto-black.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:locale" content="pt_BR"/>
+  <meta property="og:locale:alternate" content="en_US"/>
+  <meta property="og:locale:alternate" content="es_ES"/>
+  <meta property="og:site_name" content="Polar Beats"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Polar Beats — Clima que você ouve. Som que você sente."/>
+  <meta name="twitter:description" content="O primeiro ar-condicionado do mundo com sistema de áudio premium integrado."/>
+  <meta name="twitter:image" content="https://www.polarbeats.com.br/produto-black.png"/>
+
+  <!-- Favicon & PWA -->
   <link rel="icon" href="favicon.png"/>
+  <link rel="apple-touch-icon" href="favicon.png"/>
+  <link rel="manifest" href="manifest.json"/>
+
+  <!-- Preload critical fonts for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" as="style"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Schema.org Structured Data — Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Polar Beats",
+    "url": "https://www.polarbeats.com.br",
+    "logo": "https://www.polarbeats.com.br/logo.png",
+    "description": "O primeiro ar-condicionado do mundo com sistema de áudio premium integrado.",
+    "email": "contato@polarbeats.com.br",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Weimar Gonçalves Torres, 1265, Sala 619",
+      "addressLocality": "Dourados",
+      "addressRegion": "MS",
+      "addressCountry": "BR"
+    },
+    "sameAs": [
+      "https://instagram.com/polarbeatsoficial"
+    ]
+  }
+  </script>
+
+  <!-- Schema.org — Product -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Polar Beats — Ar-condicionado com Áudio Premium",
+    "description": "Split inverter de alta eficiência com sistema de áudio de alta fidelidade integrado ao chassi lateral. Patente INPI BR 202023011705-3.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Polar Beats"
+    },
+    "image": "https://www.polarbeats.com.br/produto-black.png",
+    "category": "Climatização & Áudio",
+    "award": "Patente INPI BR 202023011705-3"
+  }
+  </script>
+
+  <!-- Schema.org — FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Como o sistema de áudio lida com a umidade e gotejamento do ar-condicionado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Desenvolvemos e patenteamos uma blindagem hidrofóbica e isolamento acústico no chassi lateral do ar-condicionado. A condensação de água do split é drenada por uma calha isolada totalmente separada do compartimento dos drivers de áudio, garantindo segurança elétrica e durabilidade de mais de 15 anos sem desgaste."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O sistema é compatível com Alexa, Google Home e Bluetooth?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! A placa de áudio interna do Polar Beats possui conectividade Bluetooth 5.2 de latência ultra-baixa e Wi-Fi integrado. Ela se conecta perfeitamente a dispositivos de voz, além de aceitar streaming direto via Spotify Connect e Apple AirPlay."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como funciona a garantia do equipamento integrado split + áudio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oferecemos garantia de 3 anos para o sistema completo e 10 anos para o compressor inverter. A assistência técnica é unificada com parceiros de distribuição credenciados."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A patente de integração da Polar Beats é válida internacionalmente?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nossa patente principal está registrada no INPI com validade até 2038 e possui proteção internacional sob o tratado PCT, assegurando prioridade de direitos em múltiplos mercados."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -904,5 +1016,13 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>

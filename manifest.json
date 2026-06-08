@@ -1,0 +1,26 @@
+{
+  "name": "Polar Beats",
+  "short_name": "Polar Beats",
+  "description": "Clima que você ouve. Som que você sente. O primeiro ar-condicionado com áudio premium.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020510",
+  "theme_color": "#020510",
+  "orientation": "any",
+  "lang": "pt-BR",
+  "categories": ["business", "lifestyle"],
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
