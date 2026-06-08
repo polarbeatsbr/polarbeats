@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folheto Polar Beats - Feira SP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #040810;
+      --accent-cyan: #5dd1ff;
+      --text-muted: #94a3b8;
+      --border-light: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #222;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #f1f5f9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* A5 Page Dimensions: 148mm x 210mm */
+    .flyer-page {
+      width: 148mm;
+      height: 210mm;
+      background-color: var(--bg-dark);
+      background-image: radial-gradient(circle at 50% 30%, rgba(93, 209, 255, 0.07), transparent 60%);
+      border: 1px solid var(--border-light);
+      padding: 16mm 14mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Background Orbs */
+    .glow-orb {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(93, 209, 255, 0.15), transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .orb-top-right {
+      top: -50px;
+      right: -50px;
+    }
+    .orb-bottom-left {
+      bottom: -50px;
+      left: -50px;
+      background: radial-gradient(circle, rgba(255, 176, 58, 0.05), transparent 70%);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .brand-logo {
+      height: 48px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(93, 209, 255, 0.3));
+    }
+
+    /* Product Showcase */
+    .product-section {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 0;
+      z-index: 10;
+    }
+
+    .product-image {
+      width: 90%;
+      max-height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.9));
+    }
+
+    .product-glow {
+      position: absolute;
+      width: 60%;
+      height: 20px;
+      bottom: 15px;
+      background: var(--accent-cyan);
+      filter: blur(20px);
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    /* Main Copy */
+    .content-section {
+      text-align: center;
+      z-index: 10;
+      padding: 0 5px;
+    }
+
+    .headline-main {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .headline-main strong {
+      color: #fff;
+    }
+
+    .slogan-box {
+      margin-top: 10px;
+    }
+
+    .slogan-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff, var(--accent-cyan));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(93, 209, 255, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--border-light);
+      padding-top: 12px;
+      z-index: 10;
+    }
+
+    .contact-info {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .contact-info strong {
+      color: #fff;
+    }
+
+    .qr-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qr-code {
+      width: 58px;
+      height: 58px;
+      background-color: #fff;
+      padding: 4px;
+      border-radius: 6px;
+    }
+
+    .qr-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Print settings to remove margins and borders */
+    @media print {
+      body {
+        background-color: #000;
+      }
+      .flyer-page {
+        width: 148mm;
+        height: 210mm;
+        border: none;
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flyer-page">
+    <div class="glow-orb orb-top-right"></div>
+    <div class="glow-orb orb-bottom-left"></div>
+
+    <!-- Header / Brand -->
+    <div class="header">
+      <img src="logo.png" alt="Polar Beats Logo" class="brand-logo">
+    </div>
+
+    <!-- Product Image -->
+    <div class="product-section">
+      <img src="produto-black.png" alt="Polar Beats Duo Black" class="product-image">
+      <div class="product-glow"></div>
+    </div>
+
+    <!-- Slogan & Main Info -->
+    <div class="content-section">
+      <p class="headline-main">
+        O primeiro ar-condicionado do mundo com<br>
+        <strong>sistema de áudio de alta fidelidade integrado</strong>.
+      </p>
+      <div class="slogan-box">
+        <h2 class="slogan-title">CLIMA QUE VOCÊ OUVE.<br>SOM QUE VOCÊ SENTE.</h2>
+      </div>
+    </div>
+
+    <!-- Footer / Contacts & QR -->
+    <div class="footer">
+      <div class="contact-info">
+        <p><strong>Polar Beats</strong> · Patente BR 202023011705-3</p>
+        <p>Instagram: @polarbeatsoficial</p>
+        <p>E-mail: contato@polarbeats.com.br</p>
+      </div>
+
+      <div class="qr-section">
+        <!-- Generates real scannable QR code linking to their website -->
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.polarbeats.com.br" alt="QR Code polarbeats.com.br" class="qr-code">
+        <span class="qr-label">Calcular Economia</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
