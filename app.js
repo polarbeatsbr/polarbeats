@@ -591,13 +591,14 @@ if (initialPlayBtn) {
 async function enviarForm() {
   const nome = document.getElementById('f-nome').value.trim();
   const email = document.getElementById('f-email').value.trim();
+  const tel = document.getElementById('f-tel').value.trim();
   const empresa = document.getElementById('f-emp').value.trim();
   const msg = document.getElementById('f-msg').value.trim();
   const inter = document.querySelector('.radio.active')?.dataset?.val || '';
   const submitBtn = document.getElementById('submit-btn');
   const currentLang = document.documentElement.lang || 'pt';
   
-  if (!nome || !email) {
+  if (!nome || !email || !tel) {
     alert(translations[currentLang].alert_fill);
     return;
   }
@@ -613,9 +614,10 @@ async function enviarForm() {
         access_key: WEB3FORMS_KEY,
         subject: 'Novo contato Polar Beats — ' + inter,
         autoresponse: true,
-        autoresponse_message: 'Olá, ' + nome + '! Recebemos seu contato e em breve nossa equipe vai te chamar. Enquanto isso, conheça mais sobre a Polar Beats em polarbeats.com.br. — Equipe Polar Beats',
+        autoresponse_message: 'Olá, ' + nome + '! Recebemos seu contato e em breve nossa equipe vai te chamar pelo WhatsApp ou e-mail. Enquanto isso, conheça mais sobre a Polar Beats em polarbeats.com.br. — Equipe Polar Beats',
         name: nome, 
         email: email, 
+        telefone: tel,
         empresa: empresa, 
         interesse: inter, 
         message: msg || '(sem mensagem)'
@@ -760,6 +762,8 @@ const translations = {
     r_other: "Outros assuntos",
     f_email: "E-mail",
     f_email_ph: "voce@empresa.com",
+    f_tel: "Telefone / WhatsApp",
+    f_tel_ph: "(00) 00000-0000",
     f_msg: "Mensagem",
     f_msg_ph: "Conte um pouco sobre seu interesse...",
     f_send: "Enviar mensagem",
@@ -811,7 +815,7 @@ const translations = {
     place6_desc: "Clima aconchegante e som espacial para quartos e salas, substituindo caixas acústicas convencionais.",
     sim_sleep_title: "Modo Sono Profundo & Ruído Branco",
     sim_sleep_desc: "Emite sons relaxantes da natureza combinados com frequências que neutralizam os ruídos da rua. Ajusta o resfriamento para o metabolismo durante o sono.",
-    alert_fill: "Por favor preencha pelo menos o nome e o e-mail.",
+    alert_fill: "Por favor preencha o nome, e-mail e telefone.",
     alert_err: "Erro ao enviar. Tente pelo WhatsApp ou e-mail.",
     duo_black_desc: "Acabamento escovado grafite com anel Aura LED.",
     duo_white_desc: "Acabamento polar branco com anel Aura LED.",
@@ -998,6 +1002,8 @@ const translations = {
     r_other: "Other matters",
     f_email: "Email",
     f_email_ph: "you@company.com",
+    f_tel: "Phone / WhatsApp",
+    f_tel_ph: "+1 (000) 000-0000",
     f_msg: "Message",
     f_msg_ph: "Tell us a bit about your interest...",
     f_send: "Send Message",
@@ -1047,7 +1053,7 @@ const translations = {
     place6_desc: "Cozy climate and spatial sound for bedrooms and living rooms, replacing conventional speakers.",
     sim_sleep_title: "Deep Sleep & White Noise Mode",
     sim_sleep_desc: "Plays relaxing nature sounds combined with frequencies that neutralize street noise. Adjusts cooling to match sleep metabolism.",
-    alert_fill: "Please fill in at least your name and email.",
+    alert_fill: "Please fill in your name, email, and phone number.",
     alert_err: "Error sending. Please try via WhatsApp or email.",
     duo_black_desc: "Brushed graphite finish with Aura LED ring.",
     duo_white_desc: "Polar white finish with Aura LED ring.",
@@ -1234,6 +1240,8 @@ const translations = {
     r_other: "Otros asuntos",
     f_email: "Correo electrónico",
     f_email_ph: "usted@empresa.com",
+    f_tel: "Teléfono / WhatsApp",
+    f_tel_ph: "+00 000 000 000",
     f_msg: "Mensaje",
     f_msg_ph: "Cuéntenos un poco sobre su interés...",
     f_send: "Enviar Mensaje",
@@ -1241,7 +1249,7 @@ const translations = {
     f_ok_desc: "Gracias, {name}. El equipo de Polar Beats se pondrá en contacto pronto.",
     footer_meta: "Polar Beats © 2026 · Brasil · Paraguay · Patente BR 202023011705-3 · INPI",
     footer_disclaimer: "Prototipo conceptual. El diseño, las características y los acabamentos presentados podrán ser refinados durante el proceso de industrialización y producción.",
-    alert_fill: "Por favor complete al menos el nombre y el correo electrónico.",
+    alert_fill: "Por favor complete el nombre, correo electrónico y teléfono.",
     alert_err: "Error al enviar. Por favor intente por WhatsApp o correo electrónico.",
     alert_conn: "Error de conexión. Por favor intente por WhatsApp o correo electrónico.",
     calc_kicker: "Viabilidad Financiera B2B",
