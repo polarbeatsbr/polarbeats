@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Polar Beats — Clima que você ouve. Som que você sente.</title>
+  <meta name="description" content="O primeiro ar-condicionado do mundo com sistema de áudio premium integrado. Patente INPI BR 202023011705-3. Climatização de alta eficiência e som de alta fidelidade."/>
+  <link rel="icon" href="favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- BACKGROUND DECORATIONS -->
+  <div class="glow glow-1" aria-hidden="true"></div>
+  <div class="glow glow-2" aria-hidden="true"></div>
+  <div class="glow glow-3" aria-hidden="true"></div>
+
+  <!-- NAVIGATION -->
+  <div class="nav-fix">
+    <nav id="navbar">
+      <a href="#topo" class="logo">
+        <div class="logo-icon"></div>
+        Polar Beats
+      </a>
+      
+      <div class="nav-links">
+        <a href="#produto" data-i18n="nav_product">Produto</a>
+        <a href="#origem" data-i18n="nav_origin">A Origem</a>
+        <a href="#mercado" data-i18n="nav_market">Mercado</a>
+        <a href="#oportunidade" data-i18n="nav_opportunity">Oportunidade</a>
+        <a href="#contato" data-i18n="nav_contact">Contato</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#contato" class="btn btn-primary nav-cta" data-i18n="nav_cta">Quero ser distribuidor</a>
+        
+        <!-- Language dropdown -->
+        <div class="lang-selector">
+          <button class="lang-active-btn" id="lang-btn-current" aria-haspopup="true" aria-expanded="false">
+            <svg class="flag-icon" width="20" height="14" viewBox="0 0 22 15" id="current-flag"><rect width="22" height="15" fill="#009C3B"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FEDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8,6.5 Q11,5.5 14,6.8" stroke="white" stroke-width="0.7" fill="none"/></svg>
+            <span id="current-lang-name">PT</span>
+            <svg class="chevron-down" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown-menu" id="lang-dropdown">
+            <button onclick="setLang('pt')">
+              <svg width="20" height="14" viewBox="0 0 22 15"><rect width="22" height="15" fill="#009C3B"/><polygon points="11,1.5 20.5,7.5 11,13.5 1.5,7.5" fill="#FEDF00"/><circle cx="11" cy="7.5" r="3.2" fill="#002776"/><path d="M8,6.5 Q11,5.5 14,6.8" stroke="white" stroke-width="0.7" fill="none"/></svg>
+              Português (PT)
+            </button>
+            <button onclick="setLang('en')">
+              <svg width="20" height="14" viewBox="0 0 22 15"><rect width="22" height="15" fill="#B22234"/><rect y="1.15" width="22" height="1.15" fill="white"/><rect y="2.31" width="22" height="1.15" fill="#B22234"/><rect y="3.46" width="22" height="1.15" fill="white"/><rect y="4.62" width="22" height="1.15" fill="#B22234"/><rect y="5.77" width="22" height="1.15" fill="white"/><rect y="6.92" width="22" height="1.15" fill="#B22234"/><rect y="8.08" width="22" height="1.15" fill="white"/><rect y="9.23" width="22" height="1.15" fill="#B22234"/><rect y="10.38" width="22" height="1.15" fill="white"/><rect y="11.54" width="22" height="1.15" fill="#B22234"/><rect y="12.69" width="22" height="1.15" fill="white"/><rect width="9" height="8" fill="#3C3B6E"/></svg>
+              English (EN)
+            </button>
+            <button onclick="setLang('es')">
+              <svg width="20" height="14" viewBox="0 0 22 15"><rect width="22" height="15" fill="#c60b1e"/><rect y="3.5" width="22" height="8" fill="#ffc400"/></svg>
+              Español (ES)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <button class="burger" id="burger-btn" aria-label="Menu">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </nav>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobile-menu">
+    <button class="close-btn" id="close-btn" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="mobile-links">
+      <a href="#produto" onclick="closeMobileMenu()" data-i18n="nav_product">Produto</a>
+      <a href="#origem" onclick="closeMobileMenu()" data-i18n="nav_origin">A Origem</a>
+      <a href="#mercado" onclick="closeMobileMenu()" data-i18n="nav_market">Mercado</a>
+      <a href="#oportunidade" onclick="closeMobileMenu()" data-i18n="nav_opportunity">Oportunidade</a>
+      <a href="#contato" onclick="closeMobileMenu()" data-i18n="nav_contact">Contato</a>
+      <a href="#contato" onclick="closeMobileMenu()" class="btn btn-primary" data-i18n="nav_cta" style="margin-top:20px; text-align:center;">Quero ser distribuidor</a>
+    </div>
+    <div class="mobile-lang-row">
+      <button class="lang-mobile-btn active" onclick="setLang('pt')">PT</button>
+      <button class="lang-mobile-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-mobile-btn" onclick="setLang('es')">ES</button>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <header id="topo">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="reveal">
+            <span class="eyebrow">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+              <span data-i18n="hero_badge">🌐 Patente Global Registrada · PCT &amp; INPI BR 202023011705-3</span>
+            </span>
+          </div>
+          <div class="reveal" style="transition-delay:80ms">
+            <h1><span class="text-gradient" data-i18n="hero_h1a">CLIMA QUE</span> <br/><span class="grad-glow" data-i18n="hero_h1b">VOCÊ OUVE.</span></h1>
+          </div>
+          <div class="reveal" style="transition-delay:160ms">
+            <p class="hero-sub" data-i18n="hero_sub">O primeiro ar-condicionado do mundo com <strong>sistema de áudio premium integrado</strong> — uma categoria inteiramente nova no mercado de climatização.</p>
+          </div>
+          <div class="reveal" style="transition-delay:240ms">
+            <div class="hero-cta">
+              <a href="#contato" class="btn btn-primary" data-i18n="hero_cta1">Quero ser distribuidor <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+              <a href="#produto" class="btn btn-ghost" data-i18n="hero_cta2">Conhecer o produto</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual reveal" style="transition-delay:200ms">
+          <div class="product-showcase-container">
+            <img src="produto-black.png" alt="Polar Beats" id="hero-product-img" class="hero-img"/>
+            <!-- Floating virtual aura status indicator -->
+            <div class="glow-status-pill">
+              <span class="status-dot pulsing"></span>
+              <span id="aura-status-text">Aura: Cold Blue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="transition-delay:300ms">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-num color-accent">52%</div>
+            <div class="stat-label" data-i18n="stat1">Taxa de aceitação nacional</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2038</div>
+            <div class="stat-label" data-i18n="stat2">Validade da patente INPI</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num color-warm">1ª</div>
+            <div class="stat-label" data-i18n="stat3">Categoria no segmento</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">B2B</div>
+            <div class="stat-label" data-i18n="stat4">Foco em alto tráfego</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCT SECTION -->
+  <section id="produto" class="section-alt">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker" data-i18n="kicker_product">O Produto</p>
+        <h2 data-i18n="h2_product">AR-CONDICIONADO. SISTEMA DE SOM. UMA SÓ PEÇA.</h2>
+        <p class="lead" data-i18n="lead_product">A Polar Beats integra tecnologia de áudio de alta fidelidade diretamente no chassi lateral de um split inverter — sem ocupar espaço extra, sem cabos adicionais.</p>
+      </div>
+
+      <!-- PRODUCT DUO — Black & White -->
+      <div class="product-duo reveal">
+        <div class="product-duo-card">
+          <div class="product-duo-img-wrap">
+            <img src="produto-black.png" alt="Polar Beats Black Edition"/>
+          </div>
+          <div class="product-duo-label">
+            <span class="duo-badge black-badge">Black Edition</span>
+            <p>Acabamento escovado grafite com anel Aura LED.</p>
+          </div>
+        </div>
+        <div class="product-duo-card">
+          <div class="product-duo-img-wrap">
+            <img src="produto-white.png" alt="Polar Beats White Edition"/>
+          </div>
+          <div class="product-duo-label">
+            <span class="duo-badge white-badge">White Edition</span>
+            <p>Acabamento polar branco com anel Aura LED.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIO SIMULATOR SHOWCASE -->
+      <div class="audio-simulator-card reveal">
+        <div class="sim-header">
+          <div class="sim-logo-badge">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 1 1 8 0"/></svg>
+            <span data-i18n="sim_badge">Simulador de Áudio Polar Beats</span>
+          </div>
+          <!-- Equalizer animation -->
+          <div class="equalizer-container" id="equalizer">
+            <span class="eq-bar bar-1"></span>
+            <span class="eq-bar bar-2"></span>
+            <span class="eq-bar bar-3"></span>
+            <span class="eq-bar bar-4"></span>
+            <span class="eq-bar bar-5"></span>
+          </div>
+        </div>
+        <div class="sim-body">
+          <div class="sim-nav">
+            <button class="sim-tab active" data-mode="tempestade" data-i18n="tab_tempestade">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+              Tempestade
+            </button>
+            <button class="sim-tab" data-mode="ninar" data-i18n="tab_ninar">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/></svg>
+              Canção de Ninar
+            </button>
+            <button class="sim-tab" data-mode="brisa" data-i18n="tab_brisa">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              Brisa Polar
+            </button>
+            <button class="sim-tab" data-mode="fogueira" data-i18n="tab_fogueira">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+              Fogueira
+            </button>
+          </div>
+          
+          <div class="sim-content-pane" id="sim-content">
+            <!-- Dynamic Content populated by Javascript -->
+            <div class="sim-pane-active">
+              <h4 data-i18n="sim_sleep_title">Modo Sono Profundo & Ruído Branco</h4>
+              <p data-i18n="sim_sleep_desc">Emite sons relaxantes da natureza combinados com frequências que neutralizam os ruídos da rua. Ajusta o resfriamento para o metabolismo durante o sono.</p>
+              <div class="audio-controls-row">
+                <button class="btn btn-primary" id="play-sim-btn">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  <span data-i18n="sim_play">Ouvir Simulação</span>
+                </button>
+                <div class="sound-track-info">
+                  <span class="track-status" data-i18n="sim_status_stopped">Parado</span>
+                  <span class="track-title">Forest Rain & Soft Wind.mp3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURES GRID -->
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </div>
+          <h3 data-i18n="feat1_title">Áudio Premium de Alta Fidelidade</h3>
+          <p data-i18n="feat1_desc">Drivers de alta fidelidade no chassi lateral garantem dispersão sonora em 180° — cobertura total do ambiente sem caixas externas.</p>
+        </div>
+        <div class="feature-card reveal" style="transition-delay:60ms">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="18" r="4"/><path d="M12 18V2l7 4"/></svg>
+          </div>
+          <h3 data-i18n="feat2_title">Integração Spotify & Bluetooth</h3>
+          <p data-i18n="feat2_desc">Controle de playlist, temperatura e iluminação Aura num único painel pelo app Polar Beats, sem trocar de tela.</p>
+        </div>
+        <div class="feature-card reveal" style="transition-delay:120ms">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          </div>
+          <h3 data-i18n="feat3_title">Modo Sleep Masking</h3>
+          <p data-i18n="feat3_desc">Algoritmo detecta o ruído externo e ajusta automaticamente sons ambiente — chuva, white noise, natureza — para um sono de qualidade.</p>
+        </div>
+        <div class="feature-card reveal" style="transition-delay:180ms">
+          <div class="feat-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
+          </div>
+          <h3 data-i18n="feat4_title">Climatização inverter de alta eficiência</h3>
+          <p data-i18n="feat4_desc">Tecnologia inverter reduz consumo em até 60% comparado a modelos convencionais, mantendo temperatura constante.</p>
+        </div>
+        <div class="feature-card reveal" style="transition-delay:240ms">
+          <div class="feat-icon warm-accent">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <h3 data-i18n="feat5_title">Aura Light — iluminação ambiente</h3>
+          <p data-i18n="feat5_desc">LED RGB integrado que sincroniza com a música e cria atmosferas personalizadas para trabalho, relaxamento ou entretenimento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ORIGEM SECTION -->
+  <section id="origem">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker warm" data-i18n="kicker_origin">A Origem</p>
+        <h2 data-i18n="h2_origin">ALGUNS INVENTORES ABANDONAM SUAS IDEIAS. OUTROS ESPERAM O MOMENTO CERTO.</h2>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-card reveal">
+          <div class="timeline-badge">01</div>
+          <h3 data-i18n="orig1_title">12 Anos de Convicção</h3>
+          <p data-i18n="orig1_desc">A ideia nasceu há 12 anos. Parecia cedo demais — e era. O mercado, a tecnologia e o consumidor precisavam amadurecer. A ideia ficou guardada. A convicção, nunca.</p>
+        </div>
+        <div class="timeline-card reveal" style="transition-delay:80ms">
+          <div class="timeline-badge">02</div>
+          <h3 data-i18n="orig2_title">O Espaço que Ninguém Ocupou</h3>
+          <p data-i18n="orig2_desc">Gree, Midea, LG e Samsung competiram décadas em preço, BTU e eficiência. Ninguém perguntou: e se o ar-condicionado pudesse fazer mais? Esse espaço sempre existiu — faltava enxergá-lo.</p>
+        </div>
+        <div class="timeline-card reveal" style="transition-delay:160ms">
+          <div class="timeline-badge">03</div>
+          <h3 data-i18n="orig3_title">Agora Saindo do Papel</h3>
+          <p data-i18n="orig3_desc">A Polar Beats não compete com os grandes — cria uma categoria que eles não ocupam. Quem quer clima e som hoje compra dois produtos. A Polar Beats resolve com um equipamento patenteado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MERCADO SECTION -->
+  <section id="mercado" class="section-alt">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker" data-i18n="kicker_market">Por que a Polar Beats</p>
+        <h2 data-i18n="h2_market">UMA CATEGORIA. ZERO CONCORRENTES.</h2>
+        <p class="lead" data-i18n="lead_market">Não existe no mercado brasileiro — nem global — nenhum produto que une climatização e áudio premium num equipamento fixo patenteado.</p>
+      </div>
+
+      <div class="grid-cards-why">
+        <div class="why-card reveal">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div class="why-body">
+            <h3 data-i18n="why1_title">Inovação patenteada</h3>
+            <p data-i18n="why1_desc">Patente INPI válida até 2038, com proteção sobre o design de integração do áudio no chassi lateral.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:60ms">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+          </div>
+          <div class="why-body">
+            <h3 data-i18n="why2_title">Mercado B2B imediato</h3>
+            <p data-i18n="why2_desc">Clínicas, academias, hotéis, salões e restaurantes — ambientes que já precisam de ar e som separados.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:120ms">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+          </div>
+          <div class="why-body">
+            <h3 data-i18n="why3_title">Substitui dois produtos</h3>
+            <p data-i18n="why3_desc">Um investimento que elimina comprar e instalar ar-condicionado e sistema de som separadamente.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:180ms">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+          </div>
+          <div class="why-body">
+            <h3 data-i18n="why4_title">Ecossistema inteligente</h3>
+            <p data-i18n="why4_desc">App proprietário que centraliza climatização, áudio e iluminação num só painel.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:240ms">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+          </div>
+          <div class="why-body">
+            <h3 data-i18n="why5_title">Mercado inexplorado</h3>
+            <p data-i18n="why5_desc">Setor de bilhões por ano no Brasil. A Polar Beats entra como premium disruptor, sem competição direta.</p>
+          </div>
+        </div>
+        <div class="why-card reveal" style="transition-delay:300ms">
+          <div class="why-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+          </div>
+          <div class="why-body">
+            <h3 data-i18n="why6_title">Pronto para distribuição</h3>
+            <p data-i18n="why6_desc">Produto em fase final de manufatura, com parceiro industrial ativo e produção estabelecida.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKET VALIDATION BANNER -->
+      <div class="market-val-container">
+        <h3 class="reveal" data-i18n="h2_val">OS NÚMEROS FALAM.</h3>
+        <p class="reveal" data-i18n="lead_val">Pesquisa de aceitação realizada em âmbito nacional confirma o potencial do produto antes mesmo do lançamento.</p>
+        
+        <div class="val-dash reveal">
+          <div class="val-stat-card">
+            <div class="val-number">52%</div>
+            <p data-i18n="val_stat1">Taxa de intenção de compra, realizada apenas com a descrição do conceito — sem imagens ou protótipo.</p>
+            <span class="val-meta" data-i18n="val_meta">Pesquisa de intenção de compra · Instituto RT Soluções · âmbito nacional</span>
+          </div>
+          <div class="val-stat-card">
+            <div class="val-number">R$ 50B</div>
+            <p data-i18n="val_stat2">Tamanho estimado do mercado brasileiro de ar-condicionado por ano.</p>
+          </div>
+          <div class="val-stat-card">
+            <div class="val-number">15+ Anos</div>
+            <p data-i18n="val_stat3">Patente INPI ativa até 2038 — exclusividade legal antes de qualquer concorrente.</p>
+          </div>
+        </div>
+
+        <div class="details-val-grid reveal">
+          <div class="detail-val-box">
+            <h4 data-i18n="vb1_title">Proposta de Valor Dual</h4>
+            <p data-i18n="vb1_desc">O cliente que precisaria comprar ar-condicionado E sistema de som resolve as duas necessidades com um único produto premium.</p>
+          </div>
+          <div class="detail-val-box">
+            <h4 data-i18n="vb2_title">Demanda Antes do Lançamento</h4>
+            <p data-i18n="vb2_desc">Pedidos registrados ainda na fase de conceito — validação de demanda real antes do produto existir fisicamente.</p>
+          </div>
+          <div class="detail-val-box">
+            <h4 data-i18n="vb3_title">Foco B2B Estratégico</h4>
+            <p data-i18n="vb3_desc">Clínicas, academias, hotéis boutique, salões e restaurantes são os canais prioritários de entrada.</p>
+          </div>
+          <div class="detail-val-box">
+            <h4 data-i18n="vb4_title">Demanda Internacional</h4>
+            <p data-i18n="vb4_desc">Conversas em andamento com gestores de portfólio imobiliário nos EUA, ainda na fase de conceito.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITIES -->
+  <section id="oportunidade">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker" data-i18n="kicker_opp">Para Distribuidores & Investidores</p>
+        <h2 data-i18n="h2_opp">ENTRE NA VANGUARDA.</h2>
+        <p class="lead" data-i18n="lead_opp">A Polar Beats está abrindo conversas com distribuidores e parceiros estratégicos para o lançamento nacional.</p>
+      </div>
+
+      <div class="opp-cards-grid">
+        <div class="opp-card reveal">
+          <div class="opp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+          </div>
+          <h3 data-i18n="opp1_title">Distribuidor Exclusivo</h3>
+          <p data-i18n="opp1_desc">Territórios exclusivos disponíveis por estado ou região. Seja o primeiro no seu mercado.</p>
+        </div>
+        <div class="opp-card reveal" style="transition-delay:60ms">
+          <div class="opp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+          </div>
+          <h3 data-i18n="opp2_title">Canal B2B</h3>
+          <p data-i18n="opp2_desc">Revenda para clínicas, hotéis, academias e estabelecimentos comerciais com margens premium.</p>
+        </div>
+        <div class="opp-card reveal" style="transition-delay:120ms">
+          <div class="opp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3 data-i18n="opp3_title">Parceiro Investidor</h3>
+          <p data-i18n="opp3_desc">Participe de uma empresa com patente registrada e produto em fase de manufatura.</p>
+        </div>
+        <div class="opp-card reveal" style="transition-delay:180ms">
+          <div class="opp-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <h3 data-i18n="opp4_title">Exportação</h3>
+          <p data-i18n="opp4_desc">Demanda internacional já identificada. Potencial de expansão para América Latina e EUA.</p>
+        </div>
+      </div>
+
+      <!-- PATENT PROMO BANNER -->
+      <div class="patent-promo-banner reveal">
+        <div class="patent-shield-icon">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+        </div>
+        <div class="patent-promo-text">
+          <h4 data-i18n="patent_title">PATENTE GLOBAL REGISTRADA</h4>
+          <p data-i18n="patent_desc">O sistema de integração de áudio no chassi lateral do split é protegido por patente internacional (tratado PCT) com registro ativo no INPI sob número BR 202023011705-3, garantindo exclusividade global e proteção em múltiplos países até 2038.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- B2B CALCULATOR SECTION -->
+  <section id="calculadora" class="section-calc">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker" data-i18n="calc_kicker">Viabilidade Financeira B2B</p>
+        <h2 data-i18n="calc_title">VEJA A ECONOMIA EM SEU EMPREENDIMENTO</h2>
+        <p class="lead" data-i18n="calc_lead">Calcule os custos que você reduz ao integrar ar-condicionado e sonorização premium em uma única infraestrutura simplificada.</p>
+      </div>
+
+      <div class="calc-container reveal">
+        <div class="calc-slider-box">
+          <div class="slider-header">
+            <span class="slider-label" data-i18n="calc_slider_label">Número de Salas / Ambientes</span>
+            <span class="slider-value-display"><span id="calc-rooms-val">10</span> <span data-i18n="calc_rooms_unit">Ambientes</span></span>
+          </div>
+          <input type="range" id="calc-rooms-slider" min="1" max="50" value="10" class="calc-range-slider"/>
+          <div class="slider-ticks">
+            <span>1</span>
+            <span>10</span>
+            <span>20</span>
+            <span>30</span>
+            <span>40</span>
+            <span>50</span>
+          </div>
+        </div>
+
+        <div class="calc-results-grid">
+          <div class="calc-card">
+            <div class="calc-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="12" x="2" y="6" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h4 data-i18n="calc_res1_title">Economia em Equipamentos</h4>
+            <div class="calc-number" id="calc-res-equip">R$ 15.000</div>
+            <p data-i18n="calc_res1_desc">Sem compra de caixas acústicas, fiação paralela e amplificadores.</p>
+          </div>
+
+          <div class="calc-card">
+            <div class="calc-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="19" cy="11" r="2"/></svg>
+            </div>
+            <h4 data-i18n="calc_res2_title">Economia em Instalação</h4>
+            <div class="calc-number" id="calc-res-install">R$ 10.000</div>
+            <p data-i18n="calc_res2_desc">Elimina custos de fixação de som, infraestrutura física e mão de obra extra.</p>
+          </div>
+
+          <div class="calc-card">
+            <div class="calc-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h4 data-i18n="calc_res3_title">Eficiência Energética (Anual)</h4>
+            <div class="calc-number" id="calc-res-energy">R$ 8.500</div>
+            <p data-i18n="calc_res3_desc">Economia em consumo gerada por split inverter e corte inteligente de caixas de som.</p>
+          </div>
+
+          <div class="calc-card total-card">
+            <div class="calc-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <h4 data-i18n="calc_total_title">Economia Total Projetada</h4>
+            <div class="calc-number text-gradient" id="calc-res-total">R$ 33.500</div>
+            <p data-i18n="calc_total_desc">Retorno financeiro logo no primeiro ano de operação.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP PRESENTATION SECTION -->
+  <section class="section-alt" id="controle-app">
+    <div class="wrap">
+      <div class="app-display-grid">
+        <div class="app-display-visuals reveal">
+          <div class="mockup-container">
+            <img src="tablet_control.jpg" alt="Polar Beats App — Controle via tablet" class="app-mockup-img tablet-hero-mockup"/>
+          </div>
+          <div class="tablet-caption-badge">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" x2="22" y1="20" y2="20"/><line x1="12" x2="12" y1="16" y2="20"/></svg>
+            Controle também via tablet
+          </div>
+        </div>
+        <div class="app-display-content reveal" style="transition-delay:100ms">
+          <span class="kicker" data-i18n="app_kicker">Controle Inteligente</span>
+          <h2 data-i18n="app_title">TUDO EM SUAS MÃOS</h2>
+          <p data-i18n="app_desc">Com o app oficial Polar Beats, você gerencia todos os aspectos do seu ambiente em qualquer dispositivo — celular, tablet ou painel de automação. Ajuste temperatura, áudio e atmosfera Aura com um toque.</p>
+          
+          <div class="app-feature-row">
+            <div class="app-feat-small-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="12" x="3" y="4" rx="2" ry="2"/><line x1="2" x2="22" y1="20" y2="20"/><line x1="12" x2="12" y1="16" y2="20"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="app_feat3_title">Funciona no celular, tablet e painel</h4>
+              <p data-i18n="app_feat3_desc">Interface responsiva que se adapta a qualquer tamanho de tela — perfeita para uso pessoal ou como painel de controle fixo em estabelecimentos comerciais.</p>
+            </div>
+          </div>
+          <div class="app-feature-row">
+            <div class="app-feat-small-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="app_feat1_title">Sincronização com Clima</h4>
+              <p data-i18n="app_feat1_desc">Ajustes dinâmicos automáticos com base no clima externo e na temperatura interna preferida.</p>
+            </div>
+          </div>
+          <div class="app-feature-row">
+            <div class="app-feat-small-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <div>
+              <h4 data-i18n="app_feat2_title">Aura Sync & Audio Visualizer</h4>
+              <p data-i18n="app_feat2_desc">Veja as cores da iluminação Aura fluírem de acordo com as frequências sonoras da música.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBIENTES SECTION -->
+  <!-- ONDE USAR — Imagens lifestyle + cards comerciais -->
+  <section id="onde-usar">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker" style="color:var(--accent)">Onde Instalar</p>
+        <h2>UM PRODUTO. INFINITOS AMBIENTES.</h2>
+        <p class="lead" style="margin:0 auto;max-width:640px">Do quarto ao hotel cinco estrelas. Do home office à academia. A Polar Beats se adapta a qualquer espaço onde clima e som fazem a diferença.</p>
+      </div>
+
+      <!-- Residencial — imagens reais -->
+      <div class="onde-photo-grid">
+        <div class="onde-photo-card">
+          <img src="crianca.png" alt="Sala de Estar — Polar Beats" loading="lazy"/>
+          <div class="onde-overlay">
+            <span class="onde-tag">Residencial</span>
+            <h3>Sala de Estar</h3>
+            <p>Clima e som premium para toda a família.</p>
+          </div>
+        </div>
+        <div class="onde-photo-card">
+          <img src="download.png" alt="Cozinha — Polar Beats" loading="lazy"/>
+          <div class="onde-overlay">
+            <span class="onde-tag">Residencial</span>
+            <h3>Cozinha & Gourmet</h3>
+            <p>Conforto e trilha sonora enquanto você recebe.</p>
+          </div>
+        </div>
+        <div class="onde-photo-card">
+          <img src="quarto.png" alt="Quarto — Polar Beats Sleep Mode" loading="lazy"/>
+          <div class="onde-overlay">
+            <span class="onde-tag">Sleep Mode</span>
+            <h3>Quarto</h3>
+            <p>Sons ambiente e temperatura ideal para o sono.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comercial & Hospitality — grid unificado sem duplicatas -->
+      <div class="onde-comercial-grid">
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🏨</div>
+          <h4>Hotéis & Resorts</h4>
+          <p>Som e clima premium integrados em cada suíte — sem cabos, sem caixas, sem poluição visual.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🏠</div>
+          <h4>Airbnb & Temporada</h4>
+          <p>Diferencial que eleva avaliações e justifica diárias mais altas na concorrência.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">💪</div>
+          <h4>Academias & Estúdios</h4>
+          <p>Alta energia sonora e climatização em 180° — a combinação que motiva cada treino.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🏥</div>
+          <h4>Clínicas & Consultórios</h4>
+          <p>Ruído branco mascarante e temperatura confortável para pacientes e profissionais.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🍽️</div>
+          <h4>Restaurantes & Bares</h4>
+          <p>Trilha sonora integrada ao ar — sem caixas na parede, sem cabos, só elegância.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">💆</div>
+          <h4>Salões & Spas</h4>
+          <p>Sons relaxantes, frequências terapêuticas e clima ideal para relaxamento completo.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🏢</div>
+          <h4>Escritórios & Coworkings</h4>
+          <p>Produtividade máxima com som mascarante de ruído e temperatura constante.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🛍️</div>
+          <h4>Lojas & Showrooms</h4>
+          <p>Mais tempo de permanência, mais conversões — clima e trilha sonora que vendem.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🎉</div>
+          <h4>Salões de Festa & Eventos</h4>
+          <p>Áudio de cobertura 180° e climatização potente para manter o ambiente perfeito.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🥂</div>
+          <h4>Salas Gourmet & Varandas</h4>
+          <p>Churrascos e jantares elevados por som premium e clima agradável num só aparelho.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🎬</div>
+          <h4>Home Theaters</h4>
+          <p>Som espacial e clima aconchegante — substitui caixas acústicas com mais elegância.</p>
+        </div>
+        <div class="onde-comercial-card">
+          <div class="onde-icon">🛎️</div>
+          <h4>Lounges & Áreas VIP</h4>
+          <p>Atmosfera exclusiva: som premium e clima perfeito que elevam o status do ambiente.</p>
+        </div>
+      </div>
+
+      <!-- CTA banner -->
+      <div class="ambientes-cta reveal" style="transition-delay:120ms;margin-top:40px">
+        <div class="ambientes-cta-inner">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          <div>
+            <h4>Instalável em qualquer ambiente do mundo</h4>
+            <p>Se o local precisa de ar-condicionado, a Polar Beats pode ser instalada — residencial, comercial ou de lazer. Um produto, possibilidades infinitas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- FAQ ACCORDION SECTION -->
+  <section id="faq" class="section-alt">
+    <div class="wrap">
+      <div class="section-header align-center">
+        <p class="kicker" data-i18n="faq_kicker">Dúvidas Frequentes</p>
+        <h2 data-i18n="faq_title">PERGUNTAS FREQUENTES</h2>
+        <p class="lead" data-i18n="faq_lead">Esclareça suas dúvidas técnicas e comerciais sobre o ecossistema integrado Polar Beats.</p>
+      </div>
+
+      <div class="faq-container reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq_q1">Como o sistema de áudio lida com a umidade e gotejamento do ar-condicionado?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p data-i18n="faq_a1">Desenvolvemos e patenteamos uma blindagem hidrofóbica e isolamento acústico no chassi lateral do ar-condicionado. A condensação de água do split é drenada por uma calha isolada totalmente separada do compartimento dos drivers de áudio, garantindo segurança elétrica e durabilidade de mais de 15 anos sem desgaste.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq_q2">O sistema é compatível com Alexa, Google Home e Bluetooth?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p data-i18n="faq_a2">Sim! A placa de áudio interna do Polar Beats possui conectividade Bluetooth 5.2 de latência ultra-baixa e Wi-Fi integrado. Ela se conecta perfeitamente a dispositivos de voz (como Alexa e Google Assistant), além de aceitar streaming direto via Spotify Connect e Apple AirPlay.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq_q3">Como funciona a garantia do equipamento integrado split + áudio?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p data-i18n="faq_a3">Oferecemos garantia de 3 anos para o sistema completo e 10 anos para o compressor inverter. A assistência técnica é unificada: nossos parceiros de distribuição e climatizadores credenciados são plenamente treinados para manutenções preventivas ou corretivas do sistema de áudio e ar simultaneamente.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span data-i18n="faq_q4">A patente de integração da Polar Beats é válida internacionalmente?</span>
+            <svg class="faq-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p data-i18n="faq_a4">Nossa patente principal está devidamente registrada no INPI (Instituto Nacional da Propriedade Industrial) no Brasil com validade até 2038. Também possuímos proteção internacional sob o tratado PCT, assegurando prioridade de direitos de design de áudio integrado em split nos mercados da América do Norte (EUA) e América Latina.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contato">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="reveal"><p class="kicker warm" data-i18n="kicker_contact">Entre em Contato</p></div>
+          <div class="reveal" style="transition-delay:60ms"><h2 data-i18n="h2_contact">VAMOS CONVERSAR SOBRE NEGÓCIOS.</h2></div>
+          <div class="reveal" style="transition-delay:120ms"><p class="lead" data-i18n="lead_contact">Se você é distribuidor, varejista, investidor ou gestor de uma rede comercial, queremos te apresentar a Polar Beats em detalhes.</p></div>
+          
+          <div class="reveal contact-channels" style="transition-delay:160ms">
+            <a href="https://wa.me/5567999999999" target="_blank" class="btn btn-primary whatsapp-btn">
+              <svg class="wa-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <span data-i18n="cta_whats">Falar pelo WhatsApp</span>
+            </a>
+            <a href="mailto:contato@polarbeats.com.br" class="btn btn-ghost">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span data-i18n="cta_email">Enviar e-mail</span>
+            </a>
+          </div>
+          
+          <div class="reveal" style="transition-delay:200ms">
+            <p class="contact-or-text"><span data-i18n="contact_or">Ou escreva para</span> <strong>contato@polarbeats.com.br</strong></p>
+          </div>
+        </div>
+
+        <div class="reveal" style="transition-delay:120ms">
+          <div class="pb-form-container">
+            <div class="form-fields" id="form-fields">
+              <div class="field">
+                <label for="f-nome" data-i18n="f_nome">Nome</label>
+                <input id="f-nome" class="pb-input" placeholder="Seu nome" data-i18n-ph="f_nome_ph" required/>
+              </div>
+              <div class="field">
+                <label for="f-emp" data-i18n="f_emp">Empresa</label>
+                <input id="f-emp" class="pb-input" placeholder="Nome da empresa" data-i18n-ph="f_emp_ph"/>
+              </div>
+              <div class="field">
+                <label data-i18n="f_interest">Tipo de interesse</label>
+                <div class="radios" id="radios">
+                  <div class="radio active" data-val="Distribuidor">
+                    <span class="rmark"><span class="rfill"></span></span>
+                    <span data-i18n="r_dist">Distribuidor</span>
+                  </div>
+                  <div class="radio" data-val="Canal B2B">
+                    <span class="rmark"><span class="rfill"></span></span>
+                    <span data-i18n="r_b2b">Canal B2B</span>
+                  </div>
+                  <div class="radio" data-val="Investidor">
+                    <span class="rmark"><span class="rfill"></span></span>
+                    <span data-i18n="r_inv">Investidor</span>
+                  </div>
+                  <div class="radio" data-val="Exportação">
+                    <span class="rmark"><span class="rfill"></span></span>
+                    <span data-i18n="r_exp">Exportação</span>
+                  </div>
+                  <div class="radio radio-full" data-val="Outros assuntos">
+                    <span class="rmark"><span class="rfill"></span></span>
+                    <span data-i18n="r_other">Outros assuntos</span>
+                  </div>
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-email" data-i18n="f_email">E-mail</label>
+                <input id="f-email" type="email" class="pb-input" placeholder="voce@empresa.com" data-i18n-ph="f_email_ph" required/>
+              </div>
+              <div class="field">
+                <label for="f-msg" data-i18n="f_msg">Mensagem</label>
+                <textarea id="f-msg" class="pb-textarea" placeholder="Conte um pouco sobre seu interesse..." data-i18n-ph="f_msg_ph"></textarea>
+              </div>
+              
+              <button class="btn btn-primary" style="width:100%; justify-content:center; gap:10px" onclick="enviarForm()" id="submit-btn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                <span data-i18n="f_send">Enviar mensagem</span>
+              </button>
+            </div>
+            
+            <div class="form-ok" id="form-ok">
+              <div class="ok-ic">
+                <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <h3 data-i18n="f_ok_title">Mensagem registrada!</h3>
+              <p id="ok-msg">Em breve a equipe Polar Beats entrar em contato.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <a href="#topo" class="logo">
+          <div class="logo-icon"></div>
+          Polar Beats
+        </a>
+        <div class="footer-social">
+          <a class="social-link" href="https://wa.me/5567999999999" target="_blank">WhatsApp</a>
+          <a class="social-link" href="https://instagram.com/polarbeatsoficial" target="_blank">Instagram</a>
+          <a class="social-link" href="mailto:contato@polarbeats.com.br">E-mail</a>
+        </div>
+      </div>
+      
+      <div class="footer-contact-info">
+        <div class="footer-row">
+          <img src="https://flagcdn.com/24x18/py.png" width="20" alt="Paraguai" class="footer-flag"/> 
+          <span>Paraguai: +595 45678-90123</span>
+        </div>
+        <div class="footer-row">
+          <img src="https://flagcdn.com/24x18/br.png" width="20" alt="Brasil" class="footer-flag"/> 
+          <span>Brasil: +55 67 99999.9999</span>
+        </div>
+        <div class="footer-row">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--cold)"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Weimar Gonçalves Torres, 1265, Sala 619, Centro, Dourados – MS</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-meta" data-i18n="footer_meta">Polar Beats © 2026 · Brasil · Paraguai · Patente BR 202023011705-3 · INPI</div>
+        <p class="disclaimer" data-i18n="footer_disclaimer">Protótipo conceitual. O design, as funcionalidades e os acabamentos apresentados poderão ser refinados durante o processo de industrialização e produção.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
