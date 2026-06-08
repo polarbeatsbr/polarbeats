@@ -24,10 +24,6 @@
       width: 874px;
       height: 1240px;
       background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 50% 15%, rgba(93, 209, 255, 0.12), transparent 55%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
-        linear-gradient(225deg, rgba(93, 209, 255, 0.02) 0%, transparent 50%);
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-primary);
       display: flex;
@@ -37,18 +33,6 @@
       position: relative;
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    .wave-glow {
-      position: absolute;
-      width: 140%;
-      height: 300px;
-      top: 35%;
-      left: -20%;
-      background: radial-gradient(ellipse at center, rgba(93, 209, 255, 0.1), transparent 70%);
-      filter: blur(40px);
-      pointer-events: none;
-      z-index: 1;
     }
 
     /* Header */
@@ -191,8 +175,50 @@
   </style>
 </head>
 <body>
+  <!-- Premium Low-Poly Background -->
+  <svg class="poly-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 874 1240" preserveAspectRatio="none" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;">
+    <!-- Base dark background -->
+    <rect width="874" height="1240" fill="#040811"/>
+    
+    <!-- Top center radial glow -->
+    <radialGradient id="topGlow" cx="50%" cy="15%" r="45%">
+      <stop offset="0%" stop-color="#5dd1ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#040811" stop-opacity="0"/>
+    </radialGradient>
+    <rect width="874" height="1240" fill="url(#topGlow)"/>
 
-  <div class="wave-glow"></div>
+    <!-- Center product radial glow -->
+    <radialGradient id="midGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5dd1ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#040811" stop-opacity="0"/>
+    </radialGradient>
+    <rect width="874" height="1240" fill="url(#midGlow)"/>
+
+    <!-- Geometric triangles in bottom-left corner -->
+    <g fill="#0c1220" stroke="#1e293b" stroke-width="0.7" opacity="0.45">
+      <polygon points="0,1000 120,950 180,1050 0,1120"/>
+      <polygon points="0,1120 180,1050 280,1180 0,1240"/>
+      <polygon points="0,900 80,920 120,950 0,1000"/>
+      <polygon points="120,950 180,1050 320,1000 220,920"/>
+      <polygon points="180,1050 280,1180 400,1080 320,1000"/>
+    </g>
+
+    <!-- Geometric triangles in bottom-right corner -->
+    <g fill="#0c1220" stroke="#1e293b" stroke-width="0.7" opacity="0.45">
+      <polygon points="874,1000 754,950 694,1050 874,1120"/>
+      <polygon points="874,1120 694,1050 594,1180 874,1240"/>
+      <polygon points="874,900 794,920 754,950 874,1000"/>
+      <polygon points="754,950 694,1050 554,1000 654,920"/>
+      <polygon points="694,1050 594,1180 474,1080 554,1000"/>
+    </g>
+
+    <!-- Geometric triangles in top-right corner -->
+    <g fill="#0c1220" stroke="#1e293b" stroke-width="0.7" opacity="0.3">
+      <polygon points="874,150 780,120 810,240 874,280"/>
+      <polygon points="874,0 720,50 780,120 874,150"/>
+      <polygon points="780,120 810,240 700,200 680,100"/>
+    </g>
+  </svg>
 
   <!-- Header -->
   <div class="header-section">
@@ -201,7 +227,7 @@
 
   <!-- Product Showcase -->
   <div class="product-section">
-    <img src="produto-black.png" alt="Polar Beats Duo Black" class="product-image">
+    <img src="produto-black-transparent.png" alt="Polar Beats Duo Black" class="product-image">
     <div class="air-flow"></div>
   </div>
 
