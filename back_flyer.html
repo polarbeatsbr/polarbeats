@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Verso do Folheto Polar Beats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070c14;
+      --bg-card: rgba(255, 255, 255, 0.02);
+      --accent-cyan: #5dd1ff;
+      --accent-cyan-glow: rgba(93, 209, 255, 0.35);
+      --text-primary: #ffffff;
+      --text-muted: #94a3b8;
+      --border-light: rgba(255, 255, 255, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 874px;
+      height: 1240px;
+      background-color: var(--bg-dark);
+      /* Subtle polygonal/geometric background pattern using CSS gradients */
+      background-image: 
+        radial-gradient(circle at 50% 15%, rgba(93, 209, 255, 0.12), transparent 55%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
+        linear-gradient(225deg, rgba(93, 209, 255, 0.02) 0%, transparent 50%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 50px;
+      position: relative;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Background soundwaves flow decoration */
+    .wave-glow {
+      position: absolute;
+      width: 130%;
+      height: 250px;
+      top: 30%;
+      left: -15%;
+      background: radial-gradient(ellipse at center, rgba(93, 209, 255, 0.08), transparent 70%);
+      filter: blur(35px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Header */
+    .header-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .brand-logo {
+      height: 70px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(93, 209, 255, 0.4));
+    }
+
+    .slogan {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      text-shadow: 0 0 10px var(--accent-cyan-glow);
+      margin-top: 5px;
+    }
+
+    /* Infographic Section */
+    .infographic-container {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+    }
+
+    .product-image {
+      width: 80%;
+      max-height: 300px;
+      object-fit: contain;
+      filter: 
+        drop-shadow(0 0 30px rgba(93, 209, 255, 0.3))
+        drop-shadow(0 20px 40px rgba(0, 0, 0, 0.9));
+    }
+
+    /* Pointer Lines & Labels */
+    .pointer-label {
+      position: absolute;
+      background: rgba(7, 12, 20, 0.9);
+      border: 1.5px solid var(--accent-cyan);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      box-shadow: 0 0 15px var(--accent-cyan-glow);
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pointer-line {
+      position: absolute;
+      height: 1.5px;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan-glow);
+      transform-origin: left center;
+    }
+
+    /* Info 1: Inverter (Left) */
+    .info-inverter {
+      top: 100px;
+      left: 35px;
+    }
+    .line-inverter {
+      top: 115px;
+      left: 200px;
+      width: 160px;
+      transform: rotate(15deg);
+    }
+
+    /* Info 2: Som Hi-Fi (Right) */
+    .info-sound {
+      top: 120px;
+      right: 35px;
+    }
+    .line-sound {
+      top: 135px;
+      right: 215px;
+      width: 140px;
+      transform: rotate(-10deg);
+    }
+
+    /* Info 3: SilentFlow (Bottom Left) */
+    .info-airflow {
+      bottom: 60px;
+      left: 80px;
+    }
+    .line-airflow {
+      bottom: 80px;
+      left: 240px;
+      width: 180px;
+      transform: rotate(-22deg);
+    }
+
+    /* Specs 2x2 Grid */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin: 10px 0;
+      z-index: 10;
+    }
+
+    .spec-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 15px 18px;
+      border-radius: 12px;
+      border-left: 3px solid var(--accent-cyan);
+      backdrop-filter: blur(5px);
+    }
+
+    .spec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .spec-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Applications Section */
+    .apps-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .app-icon {
+      font-size: 20px;
+    }
+
+    .app-name {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Footer */
+    .footer-section {
+      display: flex;
+      justify-content: center;
+      border-top: 1.5px solid rgba(93, 209, 255, 0.15);
+      padding-top: 25px;
+      z-index: 10;
+    }
+
+    .cta-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      text-shadow: 0 0 10px var(--accent-cyan-glow);
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wave-glow"></div>
+
+  <!-- Header -->
+  <div class="header-section">
+    <img src="logo.png" alt="Polar Beats Logo" class="brand-logo">
+    <h2 class="slogan">RECURSOS & ESPECIFICAÇÕES</h2>
+  </div>
+
+  <!-- Infographic Showcase -->
+  <div class="infographic-container">
+    <!-- Real product image -->
+    <img src="produto-black.png" alt="Polar Beats Duo Black" class="product-image">
+    
+    <!-- Infographic lines -->
+    <div class="pointer-line line-inverter"></div>
+    <div class="pointer-line line-sound"></div>
+    <div class="pointer-line line-airflow"></div>
+
+    <!-- Infographic labels -->
+    <div class="pointer-label info-inverter">⚡ INVERTER A+++</div>
+    <div class="pointer-label info-sound">🔊 SOM Hi-Fi 180°</div>
+    <div class="pointer-label info-airflow">🍃 SILENTFLOW</div>
+  </div>
+
+  <!-- Specs Grid -->
+  <div class="specs-grid">
+    <div class="spec-item">
+      <div class="spec-title">Climatização</div>
+      <div class="spec-desc">Tecnologia Inverter inteligente de alta eficiência e baixo consumo energético (Classe A+++).</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-title">Áudio Premium</div>
+      <div class="spec-desc">Alto-falantes de alta fidelidade integrados nas laterais com dispersão acústica de 180°.</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-title">Controle Smart</div>
+      <div class="spec-desc">Conexão Wi-Fi, aplicativo exclusivo Polar Beats e integração com Alexa e Google Home.</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-title">Sleep Mode</div>
+      <div class="spec-desc">Mascaramento acústico ativo com ruído branco integrado para promover um sono profundo.</div>
+    </div>
+  </div>
+
+  <!-- Applications -->
+  <div class="apps-section">
+    <div class="apps-grid">
+      <div class="app-card">
+        <span class="app-icon">🏨</span>
+        <span class="app-name">Hotéis</span>
+      </div>
+      <div class="app-card">
+        <span class="app-icon">🏥</span>
+        <span class="app-name">Clínicas</span>
+      </div>
+      <div class="app-card">
+        <span class="app-icon">🏋️</span>
+        <span class="app-name">Academias</span>
+      </div>
+      <div class="app-card">
+        <span class="app-icon">🏡</span>
+        <span class="app-name">Residências</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-section">
+    <span class="cta-text">REVOLUCIONE A EXPERIÊNCIA DO SEU AMBIENTE</span>
+  </div>
+
+</body>
+</html>

@@ -28,9 +28,10 @@
       background-color: #11151d;
       font-family: 'Plus Jakarta Sans', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      min-height: 100vh;
+      gap: 30px;
+      padding: 40px 20px;
       color: var(--text-primary);
       -webkit-font-smoothing: antialiased;
     }
@@ -40,7 +41,6 @@
       width: 148mm;
       height: 210mm;
       background-color: var(--bg-dark);
-      /* Subtle polygonal/geometric background pattern using CSS gradients */
       background-image: 
         radial-gradient(circle at 50% 15%, rgba(93, 209, 255, 0.12), transparent 55%),
         linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, transparent 40%),
@@ -55,20 +55,19 @@
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
     }
 
-    /* Background soundwaves flow decoration */
     .wave-glow {
       position: absolute;
-      width: 130%;
-      height: 140px;
+      width: 140%;
+      height: 150px;
       top: 35%;
-      left: -15%;
+      left: -20%;
       background: radial-gradient(ellipse at center, rgba(93, 209, 255, 0.08), transparent 70%);
       filter: blur(30px);
       pointer-events: none;
       z-index: 1;
     }
 
-    /* Header & Slogan */
+    /* Header */
     .header-section {
       display: flex;
       flex-direction: column;
@@ -92,7 +91,7 @@
 
     .slogan {
       font-family: 'Syne', sans-serif;
-      font-size: 16.5px;
+      font-size: 16px;
       font-weight: 800;
       line-height: 1.25;
       letter-spacing: 0.02em;
@@ -109,7 +108,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 10px 0;
+      margin: 15px 0;
       z-index: 10;
     }
 
@@ -117,14 +116,11 @@
       width: 88%;
       max-height: 170px;
       object-fit: contain;
-      /* Intense cyan glow on the air conditioner chassis */
       filter: 
         drop-shadow(0 0 25px rgba(93, 209, 255, 0.35))
         drop-shadow(0 15px 35px rgba(0, 0, 0, 0.95));
-      transition: transform 0.3s ease;
     }
 
-    /* Cold Air & Soundwaves flow animation below AC */
     .air-flow {
       position: absolute;
       bottom: -15px;
@@ -137,52 +133,151 @@
       opacity: 0.7;
     }
 
-    /* 2x2 Features Grid */
-    .features-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+    /* Front Content Area */
+    .content-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
       z-index: 10;
-      margin: 10px 0;
-      padding: 0 4px;
+      margin-bottom: 10px;
     }
 
-    .feature-item {
+    .headline {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+      max-width: 90%;
+    }
+
+    .front-slogan {
+      font-family: 'Syne', sans-serif;
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Infographic Styles (Verso) */
+    .infographic-container {
+      position: relative;
+      width: 100%;
+      height: 165px;
       display: flex;
-      align-items: flex-start;
+      justify-content: center;
+      align-items: center;
+      margin: 5px 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+    }
+
+    .infographic-image {
+      width: 80%;
+      max-height: 130px;
+      object-fit: contain;
+      filter: 
+        drop-shadow(0 0 20px rgba(93, 209, 255, 0.25))
+        drop-shadow(0 10px 20px rgba(0, 0, 0, 0.85));
+    }
+
+    .info-pointer {
+      position: absolute;
+      background: rgba(7, 12, 20, 0.9);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 5px;
+      padding: 3px 6px;
+      font-size: 7.5px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan-glow);
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.02em;
+    }
+
+    .pointer-sound {
+      top: 25%;
+      right: 5%;
+    }
+
+    .pointer-inverter {
+      top: 15%;
+      left: 5%;
+    }
+
+    .pointer-airflow {
+      bottom: 15%;
+      left: 28%;
+    }
+
+    /* Specs 2x2 Grid (Verso) */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
+      margin: 5px 0;
+      z-index: 10;
+    }
+
+    .spec-item {
       background: var(--bg-card);
       border: 1px solid var(--border-light);
       padding: 10px 12px;
-      border-radius: 12px;
-      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      border-left: 2px solid var(--accent-cyan);
     }
 
-    .feature-icon {
-      font-size: 20px;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .feature-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .feature-title {
-      font-size: 10px;
+    .spec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 9.5px;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
       text-transform: uppercase;
-      color: var(--text-primary);
+      letter-spacing: 0.03em;
+      margin-bottom: 2px;
     }
 
-    .feature-desc {
-      font-size: 9px;
+    .spec-desc {
+      font-size: 8px;
       color: var(--text-muted);
       line-height: 1.3;
+    }
+
+    /* Apps Grid */
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .app-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 6px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .app-icon {
+      font-size: 14px;
+    }
+
+    .app-name {
+      font-size: 7.5px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
     /* Footer & CTA */
@@ -225,7 +320,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(255, 255, 255, 0.015);
       border: 1px solid var(--border-light);
       padding: 6px 10px;
       border-radius: 10px;
@@ -258,130 +353,11 @@
       color: var(--accent-cyan);
     }
 
-    /* Verso (Back) specific styles */
-    .verso-content {
-      display: flex;
-      flex-direction: column;
-      z-index: 10;
-      flex-grow: 1;
-      margin: 10px 0;
-    }
-
-    /* Infographic Styles */
-    .infographic-container {
-      position: relative;
-      width: 100%;
-      height: 155px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 8px 0;
-      background: rgba(255, 255, 255, 0.01);
-      border: 1px solid var(--border-light);
-      border-radius: 12px;
-    }
-
-    .infographic-image {
-      width: 72%;
-      max-height: 140px;
-      object-fit: contain;
-      filter: 
-        drop-shadow(0 0 20px rgba(93, 209, 255, 0.25))
-        drop-shadow(0 10px 20px rgba(0, 0, 0, 0.85));
-    }
-
-    .info-pointer {
-      position: absolute;
-      background: rgba(7, 12, 20, 0.85);
-      border: 1px solid var(--accent-cyan);
-      border-radius: 6px;
-      padding: 3px 6px;
-      font-size: 8px;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      box-shadow: 0 0 10px var(--accent-cyan-glow);
-    }
-
-    .pointer-sound {
-      top: 25%;
-      right: 5%;
-    }
-
-    .pointer-inverter {
-      top: 15%;
-      left: 5%;
-    }
-
-    .pointer-airflow {
-      bottom: 10%;
-      right: 35%;
-    }
-
-    /* Specs 2x2 Grid */
-    .specs-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 10px 0;
-    }
-
-    .spec-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      padding: 8px 10px;
-      border-radius: 8px;
-      border-left: 2px solid var(--accent-cyan);
-    }
-
-    .spec-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 9.5px;
-      font-weight: 800;
-      color: var(--accent-cyan);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      margin-bottom: 2px;
-    }
-
-    .spec-desc {
-      font-size: 8px;
-      color: var(--text-muted);
-      line-height: 1.3;
-    }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-
-    .app-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      padding: 6px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .app-icon {
-      font-size: 14px;
-    }
-
-    .app-name {
-      font-size: 7.5px;
-      font-weight: 700;
-      color: var(--text-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-    }
     /* Print styling rules */
     @media print {
       body {
         background-color: #000000;
+        padding: 0;
       }
       .flyer-page {
         width: 148mm;
@@ -399,15 +375,15 @@
 </head>
 <body>
 
+  <!-- ================= FRENTE ================= -->
   <div class="flyer-page">
     <div class="wave-glow"></div>
 
-    <!-- Header / Brand Slogan -->
+    <!-- Header / Brand Logo -->
     <div class="header-section">
       <div class="logo-container">
         <img src="logo.png" alt="Polar Beats Logo" class="brand-logo">
       </div>
-      <h2 class="slogan">CLIMA QUE VOCÊ OUVE.<br>SOM QUE VOCÊ SENTE.</h2>
     </div>
 
     <!-- Product Showcase -->
@@ -416,49 +392,18 @@
       <div class="air-flow"></div>
     </div>
 
-    <!-- 2x2 Features Grid -->
-    <div class="features-grid">
-      <!-- Feature 1 -->
-      <div class="feature-item">
-        <span class="feature-icon">❄️</span>
-        <div class="feature-text">
-          <span class="feature-title">Resfriamento Ultra-Silencioso</span>
-          <span class="feature-desc">Com Tecnologia SilentFlow</span>
-        </div>
-      </div>
-      <!-- Feature 2 -->
-      <div class="feature-item">
-        <span class="feature-icon">🎵</span>
-        <div class="feature-text">
-          <span class="feature-title">Som Premium Integrado</span>
-          <span class="feature-desc">Alto-falantes de Alta Fidelidade</span>
-        </div>
-      </div>
-      <!-- Feature 3 -->
-      <div class="feature-item">
-        <span class="feature-icon">📱</span>
-        <div class="feature-text">
-          <span class="feature-title">Controle por App</span>
-          <span class="feature-desc">Gerenciamento Inteligente & Wi-Fi</span>
-        </div>
-      </div>
-      <!-- Feature 4 -->
-      <div class="feature-item">
-        <span class="feature-icon">🍃</span>
-        <div class="feature-text">
-          <span class="feature-title">Eficiência Energética</span>
-          <span class="feature-desc">Classe A+++ & Baixo Consumo</span>
-        </div>
-      </div>
+    <!-- Headline & Slogan -->
+    <div class="content-section">
+      <p class="headline">O primeiro ar-condicionado com áudio premium integrado do mundo.</p>
+      <h2 class="front-slogan">CLIMA QUE VOCÊ OUVE.<br>SOM QUE VOCÊ SENTE.</h2>
     </div>
 
     <!-- Footer / Contacts & QR -->
     <div class="footer-section">
       <div class="footer-left">
-        <span class="cta-text">Descubra o Futuro do Conforto.</span>
         <div class="contact-info">
-          <p><strong>www.polarbeats.com.br</strong> · contato@polarbeats.com.br</p>
-          <p>Instagram: @polarbeatsoficial · Patente BR 202023011705-3</p>
+          <p><strong>www.polarbeats.com.br</strong></p>
+          <p>contato@polarbeats.com.br</p>
         </div>
       </div>
 
@@ -469,11 +414,14 @@
           <span class="qr-subtitle">Economia</span>
         </div>
       </div>
-  <!-- Verso (Back) -->
-  <div class="flyer-page" style="justify-content: space-between;">
+    </div>
+  </div>
+
+  <!-- ================= VERSO ================= -->
+  <div class="flyer-page">
     <div class="wave-glow"></div>
 
-    <!-- Header / Brand Slogan -->
+    <!-- Header -->
     <div class="header-section">
       <div class="logo-container">
         <img src="logo.png" alt="Polar Beats Logo" class="brand-logo">
@@ -490,7 +438,7 @@
     </div>
 
     <!-- Verso Main Content -->
-    <div class="verso-content" style="margin: 0;">
+    <div class="verso-content">
       <!-- Section 1: Specs Grid -->
       <div class="specs-grid">
         <div class="spec-item">
@@ -513,22 +461,22 @@
 
       <!-- Section 2: Aplicações Chave -->
       <div style="width: 100%;">
-        <div class="apps-grid" style="gap: 8px;">
-          <div class="app-card" style="border-color: rgba(93, 209, 255, 0.12); background: rgba(255, 255, 255, 0.015); padding: 5px;">
-            <span class="app-icon" style="font-size: 14px;">🏨</span>
-            <span class="app-name" style="color: var(--accent-cyan); font-size: 7.5px;">Hotéis</span>
+        <div class="apps-grid">
+          <div class="app-card">
+            <span class="app-icon">🏨</span>
+            <span class="app-name">Hotéis</span>
           </div>
-          <div class="app-card" style="border-color: rgba(93, 209, 255, 0.12); background: rgba(255, 255, 255, 0.015); padding: 5px;">
-            <span class="app-icon" style="font-size: 14px;">🏥</span>
-            <span class="app-name" style="color: var(--accent-cyan); font-size: 7.5px;">Clínicas</span>
+          <div class="app-card">
+            <span class="app-icon">🏥</span>
+            <span class="app-name">Clínicas</span>
           </div>
-          <div class="app-card" style="border-color: rgba(93, 209, 255, 0.12); background: rgba(255, 255, 255, 0.015); padding: 5px;">
-            <span class="app-icon" style="font-size: 14px;">🏋️</span>
-            <span class="app-name" style="color: var(--accent-cyan); font-size: 7.5px;">Academias</span>
+          <div class="app-card">
+            <span class="app-icon">🏋️</span>
+            <span class="app-name">Academias</span>
           </div>
-          <div class="app-card" style="border-color: rgba(93, 209, 255, 0.12); background: rgba(255, 255, 255, 0.015); padding: 5px;">
-            <span class="app-icon" style="font-size: 14px;">🏡</span>
-            <span class="app-name" style="color: var(--accent-cyan); font-size: 7.5px;">Residências</span>
+          <div class="app-card">
+            <span class="app-icon">🏡</span>
+            <span class="app-name">Residências</span>
           </div>
         </div>
       </div>
@@ -536,7 +484,7 @@
 
     <!-- Footer / Closing Call to Action -->
     <div class="footer-section" style="justify-content: center; border-top: 1px solid rgba(93, 209, 255, 0.15); padding: 10px 0 0 0;">
-      <span class="cta-text" style="font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 800; color: var(--accent-cyan); text-shadow: 0 0 8px var(--accent-cyan-glow); letter-spacing: 0.05em; text-align: center;">
+      <span class="cta-text" style="font-size: 10px; text-align: center;">
         REVOLUCIONE A EXPERIÊNCIA DO SEU AMBIENTE
       </span>
     </div>
