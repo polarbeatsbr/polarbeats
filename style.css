@@ -247,8 +247,12 @@ nav {
   justify-content: space-between;
   padding: 12px 32px;
   border-radius: 16px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 8, 16, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .nav-fix.scrolled {
@@ -290,6 +294,23 @@ nav {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-muted);
+}
+
+@media (min-width: 961px) {
+  nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+  nav .logo {
+    justify-self: start;
+  }
+  nav .nav-links {
+    justify-self: center;
+  }
+  nav .nav-actions {
+    justify-self: end;
+  }
 }
 
 .nav-links a {

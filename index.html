@@ -169,6 +169,10 @@
               <svg width="20" height="14" viewBox="0 0 22 15"><rect width="22" height="15" fill="#c60b1e"/><rect y="3.5" width="22" height="8" fill="#ffc400"/></svg>
               Español (ES)
             </button>
+            <button onclick="setLang('zh')">
+              <svg width="20" height="14" viewBox="0 0 22 15"><rect width="22" height="15" fill="#de2910"/><polygon points="4.4,1.5 4.9,3.0 6.5,3.0 5.2,4.0 5.7,5.5 4.4,4.5 3.1,5.5 3.6,4.0 2.3,3.0 3.9,3.0" fill="#ffde00"/></svg>
+              中文 (ZH)
+            </button>
           </div>
         </div>
       </div>
@@ -196,6 +200,7 @@
       <button class="lang-mobile-btn active" onclick="setLang('pt')">PT</button>
       <button class="lang-mobile-btn" onclick="setLang('en')">EN</button>
       <button class="lang-mobile-btn" onclick="setLang('es')">ES</button>
+      <button class="lang-mobile-btn" onclick="setLang('zh')">ZH</button>
     </div>
   </div>
 
@@ -954,6 +959,10 @@
               <div class="field">
                 <label for="f-email" data-i18n="f_email">E-mail</label>
                 <input id="f-email" type="email" class="pb-input" placeholder="voce@empresa.com" data-i18n-ph="f_email_ph" required/>
+              </div>
+              <div class="field">
+                <label for="f-tel" data-i18n="f_tel">Telefone / WhatsApp</label>
+                <input id="f-tel" type="tel" class="pb-input" placeholder="(00) 00000-0000" data-i18n-ph="f_tel_ph" required/>
               </div>
               <div class="field">
                 <label for="f-msg" data-i18n="f_msg">Mensagem</label>
